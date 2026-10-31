@@ -4,46 +4,53 @@
 <head>
 
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>ArenaCell | Catálogo de Peças</title>
 
-    <title>Catálogo ArenaCell</title>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         rel="stylesheet"
-        href="style.css"
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
     >
+
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
 
 <body>
 
+    <a class="pular-conteudo" href="#conteudo">Ir para a tabela</a>
+
 
     <!-- ==========================================
          CABEÇALHO
     =========================================== -->
 
-    <header>
+    <header class="topbar">
 
-        <h1>
-            Catálogo de preços de peças
-        </h1>
+        <div class="marca-principal">
+            <img
+                src="AC.png"
+                alt="Logo ArenaCell"
+                class="logo"
+                onerror="this.style.display='none'"
+            >
+            <div>
+                <h1>ArenaCell</h1>
+                <p>Catálogo de peças e valores</p>
+            </div>
+        </div>
 
-        <img
-            src="AC.png"
-            alt="Logo ArenaCell"
-        >
+        <div class="status-sync" id="statusSync" data-estado="conectando" role="status" aria-live="polite">
+            <span class="status-ponto" aria-hidden="true"></span>
+            <span class="status-texto">Conectando…</span>
+        </div>
 
     </header>
 
-
-    <!-- ==========================================
-         CONTAINER PRINCIPAL
-    =========================================== -->
 
     <div class="container">
 
@@ -54,119 +61,53 @@
 
         <aside class="menu">
 
+            <h2 class="menu-titulo">Marcas</h2>
 
-            <!-- Campo de pesquisa -->
+            <nav class="menu-lista" aria-label="Marcas de celular">
 
-            <input
-                type="text"
-                id="pesquisa"
-                placeholder="Pesquisar modelo..."
-                autocomplete="off"
-            >
+                <button class="marca" data-marca="iphone" type="button">
+                    <span class="marca-sigla" aria-hidden="true">iP</span>
+                    <span class="marca-nome">iPhone</span>
+                    <span class="marca-qtd"></span>
+                </button>
 
+                <button class="marca" data-marca="samsung" type="button">
+                    <span class="marca-sigla" aria-hidden="true">Sa</span>
+                    <span class="marca-nome">Samsung</span>
+                    <span class="marca-qtd"></span>
+                </button>
 
-            <!-- ==================================
-                 BOTÕES DAS MARCAS
-            =================================== -->
+                <button class="marca" data-marca="motorola" type="button">
+                    <span class="marca-sigla" aria-hidden="true">Mo</span>
+                    <span class="marca-nome">Motorola</span>
+                    <span class="marca-qtd"></span>
+                </button>
 
+                <button class="marca" data-marca="xiaomi" type="button">
+                    <span class="marca-sigla" aria-hidden="true">Xi</span>
+                    <span class="marca-nome">Xiaomi</span>
+                    <span class="marca-qtd"></span>
+                </button>
 
-            <button
-                class="marca"
-                data-marca="iphone"
-                type="button"
-            >
+                <button class="marca" data-marca="realme" type="button">
+                    <span class="marca-sigla" aria-hidden="true">Re</span>
+                    <span class="marca-nome">Realme</span>
+                    <span class="marca-qtd"></span>
+                </button>
 
-                <img
-                    src="https://www.pngarts.com/files/3/Apple-iPhone-PNG-Photo.png"
-                    alt="iPhone"
-                >
+                <button class="marca" data-marca="infinix" type="button">
+                    <span class="marca-sigla" aria-hidden="true">In</span>
+                    <span class="marca-nome">Infinix</span>
+                    <span class="marca-qtd"></span>
+                </button>
 
-            </button>
+                <button class="marca" data-marca="oppo" type="button">
+                    <span class="marca-sigla" aria-hidden="true">Op</span>
+                    <span class="marca-nome">OPPO</span>
+                    <span class="marca-qtd"></span>
+                </button>
 
-
-            <button
-                class="marca"
-                data-marca="samsung"
-                type="button"
-            >
-
-                <img
-                    src="https://pngimg.com/uploads/samsung_logo/samsung_logo_PNG9.png"
-                    alt="Samsung"
-                >
-
-            </button>
-
-
-            <button
-                class="marca"
-                data-marca="motorola"
-                type="button"
-            >
-
-                <img
-                    src="https://cdn.freebiesupply.com/logos/large/2x/motorola-2-logo-png-transparent.png"
-                    alt="Motorola"
-                >
-
-            </button>
-
-
-            <button
-                class="marca"
-                data-marca="xiaomi"
-                type="button"
-            >
-
-                <img
-                    src="https://pluspng.com/img-png/xiaomi-logo-png-xiaomi-xiaomi-logo-1024.png"
-                    alt="Xiaomi"
-                >
-
-            </button>
-
-
-            <button
-                class="marca"
-                data-marca="realme"
-                type="button"
-            >
-
-                <img
-                    src="https://www.freelogovectors.net/wp-content/uploads/2023/05/realme_logo-freelogovectors.net_-640x400.png"
-                    alt="Realme"
-                >
-
-            </button>
-
-
-            <button
-                class="marca"
-                data-marca="lg"
-                type="button"
-            >
-
-                <img
-                    src="https://logopng.com.br/logos/lg-84.svg?dpl=dpl_5qJ2bBU32D1stVmDDgeBRprAgEZc"
-                    alt="LG"
-                >
-
-            </button>
-
-
-            <button
-                class="marca"
-                data-marca="oppo"
-                type="button"
-            >
-
-                <img
-                    src="https://pluspng.com/img-png/oppo-logo-png-oppo-promotion-1853x700.png"
-                    alt="Oppo"
-                >
-
-            </button>
-
+            </nav>
 
         </aside>
 
@@ -177,33 +118,76 @@
 
         <main>
 
+            <section class="cabecalho-pagina">
+                <h2 id="tituloMarca">Catálogo de peças</h2>
+                <p id="descricaoPagina">Escolha uma marca para consultar os modelos e cadastrar os valores.</p>
+                <p class="so-impressao" id="dataImpressao"></p>
+            </section>
 
-            <h2 id="tituloMarca">
-                Escolha uma marca
-            </h2>
 
+            <!-- Aparece depois que uma marca é aberta -->
+            <div class="ferramentas" id="barraFerramentas" hidden>
 
-            <div id="conteudo">
+                <label class="campo-pesquisa">
+                    <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <circle cx="8.5" cy="8.5" r="5.5"></circle>
+                        <path d="M13 13l4 4"></path>
+                    </svg>
+                    <input
+                        type="search"
+                        id="pesquisa"
+                        placeholder="Pesquisar modelo"
+                        aria-label="Pesquisar modelo"
+                        autocomplete="off"
+                    >
+                </label>
 
-                <p>
-                    Selecione uma marca ao lado.
-                </p>
+                <span class="contagem" id="contagem"></span>
+
+                <span class="preenchimento" title="Preços já cadastrados nas peças exibidas">
+                    <span class="preenchimento-barra"><i id="barraPreenchimento"></i></span>
+                    <span id="textoPreenchimento"></span>
+                </span>
+
+                <div class="acoes">
+
+                    <details class="colunas">
+                        <summary>Peças exibidas</summary>
+                        <div class="colunas-painel" id="seletorPecas"></div>
+                    </details>
+
+                    <button type="button" class="botao" id="botaoExportar" title="Baixar esta marca como planilha (Excel)">
+                        <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10 3v10M6 9l4 4 4-4M4 16h12"></path>
+                        </svg>
+                        Exportar
+                    </button>
+
+                    <button type="button" class="botao" id="botaoImprimir" title="Imprimir só as linhas com preço">
+                        <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 7V3h8v4M6 14H4V8h12v6h-2M6 12h8v5H6z"></path>
+                        </svg>
+                        Imprimir
+                    </button>
+
+                </div>
 
             </div>
 
 
-        </main>
+            <div id="conteudo">
+                <div class="estado-vazio">
+                    <h3>Nenhuma marca selecionada</h3>
+                    <p>Escolha um fabricante no menu para ver os modelos e preencher o valor de cada peça.</p>
+                </div>
+            </div>
 
+        </main>
 
     </div>
 
 
-    <!-- ==========================================
-         JAVASCRIPT
-    =========================================== -->
-
     <script src="script.js"></script>
-
 
 </body>
 

@@ -1,16 +1,80 @@
 /* =========================================================
-   CONFIGURAÇÕES GERAIS
+   ARENACELL - CATÁLOGO DE PREÇOS
+   Identidade: azul profundo + laranja da marca
+========================================================= */
+
+:root {
+    --azul: #004aad;
+    --azul-escuro: #0a2a5e;
+    --azul-claro: #e8f0fc;
+    --laranja: #ff7f00;
+    --laranja-escuro: #c25f00;
+
+    --fundo: #f1f4f9;
+    --superficie: #ffffff;
+    --linha: #dfe5ee;
+    --texto: #1b2433;
+    --texto-suave: #5b6779;
+
+    --ok: #1a8a4a;
+    --erro: #c62828;
+
+    --raio: 10px;
+    --altura-topo: 68px;
+    --largura-menu: 248px;
+}
+
+
+/* =========================================================
+   BASE
 ========================================================= */
 
 * {
     box-sizing: border-box;
 }
 
+[hidden] {
+    display: none !important;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
 body {
     margin: 0;
-    font-family: "Segoe UI", Arial, sans-serif;
-    background-color: #f5f7fa;
-    color: #333;
+    font-family: "Manrope", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    background-color: var(--fundo);
+    color: var(--texto);
+}
+
+button,
+input,
+summary {
+    font-family: inherit;
+}
+
+:focus-visible {
+    outline: 3px solid var(--laranja);
+    outline-offset: 2px;
+}
+
+.pular-conteudo {
+    position: absolute;
+    left: 12px;
+    top: -60px;
+    z-index: 100;
+    padding: 10px 14px;
+    background: var(--azul-escuro);
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.pular-conteudo:focus {
+    top: 10px;
 }
 
 
@@ -18,47 +82,109 @@ body {
    CABEÇALHO
 ========================================================= */
 
-header {
-    background-color: #ffffff;
-    color: #ff7f00;
-    text-align: center;
-    padding: 20px 25px;
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+
+    height: var(--altura-topo);
+    padding: 0 28px;
 
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 20px;
+    justify-content: space-between;
+    gap: 16px;
 
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-
-    position: relative;
-    z-index: 10;
+    background: var(--superficie);
+    border-bottom: 3px solid var(--laranja);
 }
 
-header h1 {
-    margin: 0;
-    font-size: 28px;
-    font-weight: bold;
+.marca-principal {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
 }
 
-
-/* Logo do ArenaCell */
-
-header img {
-    width: 60px;
-    height: 60px;
+.logo {
+    width: 44px;
+    height: 44px;
     object-fit: contain;
     border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.marca-principal h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--azul);
+}
+
+.marca-principal p {
+    margin: 2px 0 0;
+    font-size: 13px;
+    color: var(--texto-suave);
+}
+
+
+/* Indicador de salvamento */
+
+.status-sync {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 7px 14px;
+
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--texto-suave);
+
+    background: var(--fundo);
+    border: 1px solid var(--linha);
+    border-radius: 999px;
+
+    white-space: nowrap;
+}
+
+.status-ponto {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #9aa5b6;
+}
+
+.status-sync[data-estado="ok"] .status-ponto {
+    background: var(--ok);
+}
+
+.status-sync[data-estado="local"] .status-ponto,
+.status-sync[data-estado="salvando"] .status-ponto {
+    background: var(--laranja);
+}
+
+.status-sync[data-estado="erro"] {
+    color: var(--erro);
+    border-color: #f0c4c4;
+    background: #fdf1f1;
+}
+
+.status-sync[data-estado="erro"] .status-ponto {
+    background: var(--erro);
 }
 
 
 /* =========================================================
-   CONTAINER PRINCIPAL
+   ESTRUTURA
 ========================================================= */
 
 .container {
     display: flex;
-    min-height: calc(100vh - 100px);
+    align-items: flex-start;
+    min-height: calc(100vh - var(--altura-topo));
 }
 
 
@@ -67,177 +193,360 @@ header img {
 ========================================================= */
 
 .menu {
-    width: 200px;
+    position: sticky;
+    top: var(--altura-topo);
 
-    background: linear-gradient(
-        180deg,
-        #ff7f00,
-        #ff9f40
-    );
+    width: var(--largura-menu);
+    height: calc(100vh - var(--altura-topo));
+    flex-shrink: 0;
 
-    padding: 20px 15px;
+    padding: 24px 16px;
+    overflow-y: auto;
 
+    background: var(--azul-escuro);
+    color: #fff;
+}
+
+.menu-titulo {
+    margin: 0 0 14px 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #9fb4d9;
+}
+
+.menu-lista {
     display: flex;
     flex-direction: column;
-    align-items: center;
-
-    gap: 12px;
-
-    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
-
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
+    gap: 6px;
 }
-
-
-/* =========================================================
-   CAMPO DE PESQUISA
-========================================================= */
-
-.menu input {
-    width: 100%;
-
-    padding: 11px;
-
-    border: none;
-
-    border-radius: 6px;
-
-    margin-bottom: 10px;
-
-    font-size: 14px;
-
-    outline: none;
-
-    box-shadow:
-        0 2px 5px rgba(0, 0, 0, 0.15);
-
-    transition: 0.3s ease;
-}
-
-
-/* Efeito ao clicar na pesquisa */
-
-.menu input:focus {
-    box-shadow:
-        0 0 0 3px rgba(0, 74, 173, 0.3);
-}
-
-
-/* =========================================================
-   BOTÕES DAS MARCAS
-========================================================= */
 
 .marca {
     width: 100%;
-    height: 80px;
 
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 12px;
 
-    background-color: #004aad;
+    padding: 10px 12px;
 
-    color: white;
+    background: transparent;
+    color: #e6edfa;
 
     border: none;
+    border-radius: var(--raio);
 
-    padding: 10px;
-
-    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
 
     cursor: pointer;
 
-    font-weight: bold;
-
-    transition:
-        transform 0.3s ease,
-        background-color 0.3s ease,
-        box-shadow 0.3s ease;
-
-    box-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.15s ease, color 0.15s ease;
 }
-
-
-/* Imagens das marcas */
-
-.marca img {
-    width: 70px;
-    height: 60px;
-
-    object-fit: contain;
-
-    transition:
-        transform 0.3s ease;
-}
-
-
-/* Efeito ao passar o mouse */
 
 .marca:hover {
-    background-color: #ffffff;
-
-    transform: translateX(4px);
-
-    box-shadow:
-        0 4px 8px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.1);
 }
 
+.marca-sigla {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
 
-/* Aumenta levemente a logo */
+    display: grid;
+    place-items: center;
 
-.marca:hover img {
-    transform: scale(1.08);
+    font-size: 13px;
+    font-weight: 800;
+
+    color: #fff;
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 8px;
+}
+
+.marca-nome {
+    flex: 1;
+}
+
+.marca-qtd {
+    font-size: 12px;
+    font-weight: 600;
+    color: #9fb4d9;
+    font-variant-numeric: tabular-nums;
+}
+
+.marca.ativa {
+    background: var(--laranja);
+    color: var(--azul-escuro);
+}
+
+.marca.ativa .marca-sigla {
+    background: var(--azul-escuro);
+    color: #fff;
+}
+
+.marca.ativa .marca-qtd {
+    color: var(--azul-escuro);
+}
+
+.menu :focus-visible {
+    outline-color: #fff;
 }
 
 
 /* =========================================================
-   CONTEÚDO PRINCIPAL
+   CONTEÚDO
 ========================================================= */
 
 main {
     flex: 1;
-
-    padding: 30px;
-
-    overflow-x: auto;
+    min-width: 0;
+    padding: 28px 32px 40px;
 }
 
+.cabecalho-pagina h2 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--azul-escuro);
+}
 
-/* Título da marca */
-
-#tituloMarca {
-    margin-top: 0;
-
-    color: #004aad;
-
-    font-size: 26px;
-
-    border-bottom:
-        3px solid #ff7f00;
-
-    padding-bottom: 10px;
+.cabecalho-pagina p {
+    margin: 6px 0 0;
+    max-width: 62ch;
+    color: var(--texto-suave);
 }
 
 
 /* =========================================================
-   MENSAGEM INICIAL
+   BARRA DE FERRAMENTAS
 ========================================================= */
 
-#conteudo > p {
-    font-size: 16px;
+.ferramentas {
+    margin: 22px 0 14px;
 
-    color: #666;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 16px;
+}
 
-    background-color: white;
+.campo-pesquisa {
+    flex: 0 1 240px;
+    min-width: 200px;
 
-    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
-    border-radius: 8px;
+    padding: 0 14px;
+    height: 44px;
 
-    box-shadow:
-        0 2px 6px rgba(0, 0, 0, 0.1);
+    color: var(--texto-suave);
+    background: var(--superficie);
+    border: 1px solid var(--linha);
+    border-radius: var(--raio);
+
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.campo-pesquisa:focus-within {
+    border-color: var(--azul);
+    box-shadow: 0 0 0 3px rgba(0, 74, 173, 0.15);
+}
+
+.campo-pesquisa input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+
+    border: none;
+    outline: none;
+    background: transparent;
+
+    font-size: 15px;
+    color: var(--texto);
+}
+
+.campo-pesquisa input:focus-visible {
+    outline: none;
+}
+
+.contagem {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--texto-suave);
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* Seletor de peças exibidas */
+
+.acoes {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.colunas {
+    position: relative;
+}
+
+.botao {
+    height: 44px;
+    padding: 0 16px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--azul);
+
+    background: var(--superficie);
+    border: 1px solid var(--linha);
+    border-radius: var(--raio);
+
+    cursor: pointer;
+
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.botao:hover {
+    border-color: var(--azul);
+    background: var(--azul-claro);
+}
+
+.preenchimento {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--texto-suave);
+    font-variant-numeric: tabular-nums;
+}
+
+.preenchimento-barra {
+    width: 64px;
+    height: 6px;
+
+    overflow: hidden;
+
+    background: #dbe2ee;
+    border-radius: 999px;
+}
+
+.preenchimento-barra i {
+    display: block;
+    width: 0;
+    height: 100%;
+
+    background: var(--laranja);
+    border-radius: inherit;
+
+    transition: width 0.3s ease;
+}
+
+.colunas summary {
+    height: 44px;
+    padding: 0 16px;
+
+    display: inline-flex;
+    align-items: center;
+
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--azul);
+
+    background: var(--superficie);
+    border: 1px solid var(--linha);
+    border-radius: var(--raio);
+
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+}
+
+.colunas summary::-webkit-details-marker {
+    display: none;
+}
+
+.colunas summary::after {
+    content: "";
+    width: 7px;
+    height: 7px;
+    margin: -3px 0 0 10px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.15s ease;
+}
+
+.colunas[open] summary {
+    border-color: var(--azul);
+}
+
+.colunas[open] summary::after {
+    margin-top: 3px;
+    transform: rotate(-135deg);
+}
+
+.colunas-painel {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    z-index: 20;
+
+    width: min(460px, calc(100vw - 32px));
+    padding: 14px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    background: var(--superficie);
+    border: 1px solid var(--linha);
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(10, 42, 94, 0.16);
+}
+
+.chip {
+    padding: 7px 13px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    color: var(--texto-suave);
+    background: var(--fundo);
+    border: 1px solid var(--linha);
+    border-radius: 999px;
+
+    cursor: pointer;
+
+    text-decoration: line-through;
+    text-decoration-color: transparent;
+}
+
+.chip[aria-pressed="true"] {
+    color: var(--azul);
+    background: var(--azul-claro);
+    border-color: #b7cdf2;
+}
+
+.chip[aria-pressed="false"] {
+    text-decoration-color: currentColor;
+}
+
+.chip:hover {
+    border-color: var(--azul);
 }
 
 
@@ -245,79 +554,94 @@ main {
    TABELA
 ========================================================= */
 
-#conteudo table {
+.tabela-scroll {
+    max-height: calc(100vh - var(--altura-topo) - 190px);
+    min-height: 320px;
+
+    overflow: auto;
+
+    background: var(--superficie);
+    border: 1px solid var(--linha);
+    border-radius: 12px;
+}
+
+#tabelaModelos {
     width: 100%;
-
-    border-collapse: collapse;
-
-    margin-top: 20px;
-
-    background-color: white;
-
-    border-radius: 10px;
-
-    overflow: hidden;
-
-    box-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.1);
+    border-collapse: separate;
+    border-spacing: 0;
 }
 
-
-/* Cabeçalho e células */
-
-#conteudo th,
-#conteudo td {
-    border: 1px solid #ddd;
-
-    padding: 12px;
-
+#tabelaModelos th,
+#tabelaModelos td {
+    padding: 8px 10px;
     text-align: center;
-
-    font-size: 14px;
-}
-
-
-/* Cabeçalho da tabela */
-
-#conteudo th {
-    background-color: #004aad;
-
-    color: white;
-
-    font-size: 15px;
-
-    position: sticky;
-
-    top: 0;
-
-    z-index: 2;
-}
-
-
-/* Células */
-
-#conteudo td {
-    background-color: #fafafa;
-}
-
-
-/* Efeito ao passar o mouse sobre uma linha */
-
-#conteudo tbody tr:hover td {
-    background-color: #f0f5ff;
-}
-
-
-/* =========================================================
-   NOME DO MODELO
-========================================================= */
-
-#conteudo .modelo {
-    font-weight: bold;
-
-    color: #004aad;
-
     white-space: nowrap;
+    border-bottom: 1px solid var(--linha);
+}
+
+/* Cabeçalho fixo */
+
+#tabelaModelos thead th {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+
+    padding: 13px 12px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    color: #fff;
+    background: var(--azul-escuro);
+    border-bottom: none;
+}
+
+/* Coluna do modelo fixa à esquerda */
+
+#tabelaModelos .modelo,
+#tabelaModelos .modelo-titulo {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+
+    min-width: 190px;
+    padding-left: 18px;
+
+    text-align: left;
+}
+
+#tabelaModelos .modelo {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--azul);
+    background: var(--superficie);
+    border-right: 1px solid var(--linha);
+}
+
+#tabelaModelos .modelo-titulo {
+    z-index: 4;
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+#tabelaModelos tbody tr:hover td,
+#tabelaModelos tbody tr:hover .modelo {
+    background: #f5f8ff;
+}
+
+/* Linha em edição fica marcada */
+
+#tabelaModelos tbody tr:focus-within td,
+#tabelaModelos tbody tr:focus-within .modelo {
+    background: #eaf1fd;
+}
+
+#tabelaModelos tbody tr:focus-within .modelo {
+    box-shadow: inset 4px 0 0 var(--laranja);
+}
+
+#tabelaModelos tbody tr:last-child td,
+#tabelaModelos tbody tr:last-child .modelo {
+    border-bottom: none;
 }
 
 
@@ -325,174 +649,388 @@ main {
    CAMPOS DE PREÇO
 ========================================================= */
 
-#conteudo input.preco {
-    width: 100px;
+.preco-campo {
+    width: 128px;
+    height: 38px;
+    margin: 0 auto;
+    padding: 0 10px;
 
-    padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 
-    border: 1px solid #ccc;
+    background: var(--superficie);
+    border: 1px solid #d3dae6;
+    border-radius: 8px;
 
-    border-radius: 6px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
 
-    text-align: center;
+.preco-campo span {
+    font-size: 12px;
+    font-weight: 700;
+    color: #8a96a8;
+}
+
+.preco-campo:focus-within {
+    border-color: var(--azul);
+    box-shadow: 0 0 0 3px rgba(0, 74, 173, 0.15);
+}
+
+#tabelaModelos input.preco {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    padding: 0;
+
+    border: none;
+    outline: none;
+    background: transparent;
 
     font-size: 14px;
+    text-align: right;
+    color: var(--texto);
 
-    outline: none;
-
-    transition:
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
+    font-variant-numeric: tabular-nums;
 }
 
+#tabelaModelos input.preco:focus-visible {
+    outline: none;
+}
 
-/* Campo de preço selecionado */
+#tabelaModelos input.preco::placeholder {
+    color: #b3bccb;
+}
 
-#conteudo input.preco:focus {
-    border-color: #004aad;
+/* Campo preenchido fica em destaque */
 
-    box-shadow:
-        0 0 0 3px rgba(0, 74, 173, 0.15);
+#tabelaModelos input.preco:not(:placeholder-shown) {
+    font-weight: 700;
+    color: var(--azul-escuro);
+}
+
+.preco-campo:has(input:not(:placeholder-shown)) {
+    background: var(--azul-claro);
+    border-color: #b7cdf2;
 }
 
 
 /* =========================================================
-   MENSAGEM DE CARREGAMENTO
+   ESTADOS: VAZIO, CARREGANDO, SEM RESULTADO
 ========================================================= */
 
+.estado-vazio,
+.sem-resultado,
 .carregando {
+    padding: 56px 24px;
     text-align: center;
+    color: var(--texto-suave);
+}
 
-    background-color: white;
+.estado-vazio {
+    margin-top: 22px;
+    background: var(--superficie);
+    border: 1px dashed #c3cddd;
+    border-radius: 12px;
+}
 
-    color: #004aad;
-
+.estado-vazio h3,
+.sem-resultado h3 {
+    margin: 0 0 6px;
     font-size: 18px;
+    color: var(--azul-escuro);
+}
 
-    font-weight: bold;
+.estado-vazio p,
+.sem-resultado p {
+    margin: 0 auto;
+    max-width: 46ch;
+}
 
-    padding: 30px;
+.carregando {
+    margin-top: 22px;
 
-    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
 
-    box-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+    color: var(--azul);
+
+    background: var(--superficie);
+    border: 1px solid var(--linha);
+    border-radius: 12px;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--azul-claro);
+    border-top-color: var(--azul);
+    border-radius: 50%;
+    animation: girar 0.8s linear infinite;
+}
+
+@keyframes girar {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 
 /* =========================================================
-   RESPONSIVIDADE
+   TABLET E CELULAR
 ========================================================= */
 
 @media (max-width: 900px) {
 
+    :root {
+        --altura-topo: 60px;
+    }
+
+    .topbar {
+        padding: 0 16px;
+    }
+
+    .logo {
+        width: 38px;
+        height: 38px;
+    }
+
+    .marca-principal p {
+        display: none;
+    }
+
     .container {
         flex-direction: column;
+        align-items: stretch;
     }
 
+    /* Menu vira uma faixa rolável na horizontal */
 
     .menu {
+        position: sticky;
+        top: var(--altura-topo);
+        z-index: 20;
+
         width: 100%;
+        height: auto;
 
-        border-radius: 0;
-
-        display: grid;
-
-        grid-template-columns:
-            repeat(4, 1fr);
-
-        align-items: center;
+        padding: 10px 12px;
+        overflow-x: auto;
+        overflow-y: hidden;
     }
 
-
-    .menu input {
-        grid-column:
-            1 / -1;
+    .menu-titulo {
+        display: none;
     }
 
+    .menu-lista {
+        flex-direction: row;
+        gap: 8px;
+    }
 
     .marca {
-        width: 100%;
-
-        height: 75px;
+        width: auto;
+        flex-shrink: 0;
+        padding: 8px 14px 8px 8px;
     }
 
+    .marca-sigla {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    .marca-qtd {
+        display: none;
+    }
 
     main {
-        padding: 20px;
+        padding: 20px 14px 32px;
     }
 
+    .cabecalho-pagina h2 {
+        font-size: 24px;
+    }
+
+    .tabela-scroll {
+        max-height: none;
+        min-height: 0;
+    }
+
+    .acoes {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .botao,
+    .colunas summary {
+        height: 40px;
+    }
+
+    .campo-pesquisa {
+        flex-basis: 100%;
+    }
+}
+
+@media (max-width: 520px) {
+
+    .status-texto {
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    #tabelaModelos .modelo,
+    #tabelaModelos .modelo-titulo {
+        min-width: 150px;
+        padding-left: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    * {
+        transition: none !important;
+        animation-duration: 0.01ms !important;
+    }
+
+    .spinner {
+        animation: none;
+    }
+}
+
+
+/* Peça que o modelo não tem (ex.: indução) */
+
+.nao-se-aplica {
+    display: inline-block;
+    width: 128px;
+    color: #b3bccb;
+    font-weight: 700;
+    cursor: default;
 }
 
 
 /* =========================================================
-   CELULAR
+   IMPRESSÃO
 ========================================================= */
 
-@media (max-width: 600px) {
+.so-impressao {
+    display: none;
+}
 
-    header {
-        flex-direction: column;
+@page {
+    size: A4 landscape;
+    margin: 10mm;
+}
 
-        padding: 15px;
+@media print {
+
+    body {
+        background: #fff;
+        font-size: 11px;
     }
 
-
-    header h1 {
-        font-size: 22px;
+    .topbar,
+    .menu,
+    .ferramentas,
+    .pular-conteudo,
+    #descricaoPagina {
+        display: none !important;
     }
 
-
-    header img {
-        width: 50px;
-        height: 50px;
+    .so-impressao {
+        display: block !important;
+        margin: 4px 0 12px;
+        color: #444;
     }
 
-
-    .menu {
-        grid-template-columns:
-            repeat(2, 1fr);
-
-        padding: 15px;
+    .container {
+        display: block;
+        min-height: 0;
     }
-
-
-    .menu input {
-        font-size: 16px;
-    }
-
-
-    .marca {
-        height: 70px;
-    }
-
-
-    .marca img {
-        width: 60px;
-        height: 50px;
-    }
-
 
     main {
-        padding: 15px;
+        padding: 0;
     }
 
-
-    #tituloMarca {
-        font-size: 22px;
+    .cabecalho-pagina h2 {
+        font-size: 20px;
+        color: #000;
     }
 
-
-    /* Permite rolagem horizontal
-       da tabela em celulares */
-
-    #conteudo {
-        overflow-x: auto;
+    .tabela-scroll {
+        max-height: none;
+        min-height: 0;
+        overflow: visible;
+        border: none;
+        border-radius: 0;
     }
 
-
-    #conteudo table {
-        min-width: 700px;
+    #tabelaModelos thead {
+        display: table-header-group;
     }
 
+    #tabelaModelos thead th,
+    #tabelaModelos .modelo,
+    #tabelaModelos .modelo-titulo {
+        position: static;
+    }
+
+    #tabelaModelos thead th {
+        color: #000;
+        background: #fff;
+        border-bottom: 2px solid #000;
+        padding: 6px 4px;
+        font-size: 10px;
+    }
+
+    #tabelaModelos th,
+    #tabelaModelos td {
+        padding: 4px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    #tabelaModelos .modelo {
+        min-width: 0;
+        color: #000;
+        box-shadow: none !important;
+        border-right: none;
+    }
+
+    #tabelaModelos tbody tr {
+        break-inside: avoid;
+    }
+
+    #tabelaModelos tbody tr.sem-preco {
+        display: none;
+    }
+
+    .preco-campo {
+        width: auto;
+        height: auto;
+        padding: 0;
+        justify-content: center;
+        border: none;
+        background: none !important;
+    }
+
+    .preco-campo:not(:has(input:not(:placeholder-shown))) {
+        visibility: hidden;
+    }
+
+    #tabelaModelos input.preco {
+        text-align: center;
+        color: #000;
+        font-size: 11px;
+    }
+
+    .nao-se-aplica {
+        width: auto;
+        color: #999;
+    }
 }

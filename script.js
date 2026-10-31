@@ -358,50 +358,6 @@ const celulares = {
         "Realme C75"
     ],
 
-    lg: [
-        "LG G4",
-        "LG G5",
-        "LG G6",
-        "LG G7 ThinQ",
-        "LG G8 ThinQ","LG G8X ThinQ",
-        "LG V20",
-        "LG V30",
-        "LG V35 ThinQ",
-        "LG V40 ThinQ",
-        "LG V50 ThinQ",
-        "LG V60 ThinQ",
-        "LG K10",
-        "LG K11",
-        "LG K12",
-        "LG K20",
-        "LG K20 Plus",
-        "LG K22",
-        "LG K30",
-        "LG K31",
-        "LG K40",
-        "LG K41S",
-        "LG K42",
-        "LG K43",
-        "LG K44",
-        "LG K50",
-        "LG K51","LG K51S",
-        "LG K52",
-        "LG K54",
-        "LG K60",
-        "LG K61",
-        "LG K62",
-        "LG K70",
-        "LG K71",
-        "LG K92",
-        "LG Q6",
-        "LG Q7",
-        "LG Q8",
-        "LG Q9",
-        "LG Velvet",
-        "LG Wing",
-        "LG Stylo 6"
-    ],
-
     oppo: [
         "Oppo Reno 2","Oppo Reno 2Z",
         "Oppo Reno 3","Oppo Reno 3A", "Oppo Reno 3 Pro",
@@ -424,220 +380,423 @@ const celulares = {
         "Oppo Find X7","Oppo Find X7 Ultra",
         "Oppo Find X8","Oppo Find X8 Pro",
         "Oppo A3","Oppo A3 Pro","Oppo A3x",
-        "Oppo A5 Pro",
+        "Oppo A5","Oppo A5 Pro",
         "Oppo A6","Oppo A6x","Oppo A6s","Oppo A6t",
+        "Oppo A9 2020",
+        "Oppo A12",
+        "Oppo A15","Oppo A15s",
+        "Oppo A16","Oppo A16s",
+        "Oppo A17","Oppo A17k",
+        "Oppo A18",
+        "Oppo A31",
         "Oppo A35",
+        "Oppo A38",
+        "Oppo A52",
+        "Oppo A53",
         "Oppo A54",
+        "Oppo A55",
         "Oppo A57",
         "Oppo A58",
+        "Oppo A60",
+        "Oppo A74",
+        "Oppo A76",
         "Oppo A77",
         "Oppo A78",
         "Oppo A79",
+        "Oppo A96",
+    ],
+
+    infinix: [
+        "Infinix Smart 4","Infinix Smart 5","Infinix Smart 6","Infinix Smart 6 Plus",
+        "Infinix Smart 7","Infinix Smart 8","Infinix Smart 8 Plus","Infinix Smart 9","Infinix Smart 10",
+        "Infinix Hot 8","Infinix Hot 9","Infinix Hot 9 Play",
+        "Infinix Hot 10","Infinix Hot 10 Play","Infinix Hot 10S","Infinix Hot 10i",
+        "Infinix Hot 11","Infinix Hot 11S","Infinix Hot 11 Play",
+        "Infinix Hot 12","Infinix Hot 12 Play","Infinix Hot 12i",
+        "Infinix Hot 20","Infinix Hot 20S","Infinix Hot 20i","Infinix Hot 20 Play",
+        "Infinix Hot 30","Infinix Hot 30i","Infinix Hot 30 Play",
+        "Infinix Hot 40","Infinix Hot 40i","Infinix Hot 40 Pro",
+        "Infinix Hot 50","Infinix Hot 50i","Infinix Hot 50 Pro",
+        "Infinix Hot 60","Infinix Hot 60i","Infinix Hot 60 Pro",
+        "Infinix Note 7","Infinix Note 8","Infinix Note 10","Infinix Note 10 Pro",
+        "Infinix Note 11","Infinix Note 11 Pro","Infinix Note 12","Infinix Note 12 Pro",
+        "Infinix Note 30","Infinix Note 30 Pro","Infinix Note 40","Infinix Note 40 Pro",
+        "Infinix Note 50","Infinix Note 50 Pro",
+        "Infinix Zero 5G","Infinix Zero 20","Infinix Zero 30","Infinix Zero 40",
+        "Infinix GT 10 Pro","Infinix GT 20 Pro","Infinix GT 30 Pro",
     ]
 };
+
+
+
+
+// ============================================================
+// MARCAS E PEÇAS
+// ============================================================
+//
+// Para adicionar ou remover uma peça, edite apenas as listas abaixo.
+// O "id" é o nome usado para salvar o preço (não altere os ids já
+// existentes, senão os preços salvos deixam de aparecer).
+//
+// ============================================================
+
+const NOMES_MARCAS = {
+    iphone: "iPhone",
+    samsung: "Samsung",
+    motorola: "Motorola",
+    xiaomi: "Xiaomi",
+    realme: "Realme",
+    infinix: "Infinix",
+    oppo: "OPPO"
+};
+
+
+// Peças de todas as marcas (na ordem em que aparecem na tabela).
+// Quando tem "soMarcas", a peça aparece apenas nessas marcas.
+const PECAS_COMUNS = [
+    { id: "frontal",       nome: "Frontal" },
+    { id: "tampa",         nome: "Tampa" },
+    { id: "bateria",       nome: "Bateria" },
+    { id: "placa",         nome: "Placa de carga" },
+    { id: "fpc",           nome: "FPC" },
+    { id: "flexVolume",    nome: "Flex volume e power" },
+    { id: "flexMain",      nome: "Flex main" },
+    { id: "inducao",       nome: "Indução" },
+    { id: "gaveta",        nome: "Gaveta de chip" },
+    { id: "leitorChip",    nome: "Leitor de chip", soMarcas: ["iphone"] },
+    { id: "auricular",     nome: "Auricular", soMarcas: ["iphone"] },
+    { id: "altoFalante",   nome: "Alto-falante" },
+    { id: "cameraTraseira", nome: "Câmera traseira" },
+    { id: "cameraFrontal", nome: "Câmera frontal" },
+    { id: "limpeza",       nome: "Limpeza" }
+];
+
+
+// Peças que existem só em algumas marcas
+// (aparecem antes de "Limpeza", que é sempre a última coluna)
+const PECAS_EXTRAS = {
+    iphone: [
+        { id: "flexFaceId", nome: "Flex Face ID" },
+        { id: "flexHome",   nome: "Flex Home" }
+    ]
+};
+
+
+// Peças que NÃO existem em uma marca inteira
+const PECAS_REMOVIDAS = {
+    iphone:   ["fpc"],
+
+    // Auricular é cobrado só nos iPhones
+    samsung:  ["auricular"],
+    motorola: ["auricular"],
+    xiaomi:   ["auricular"],
+    realme:   ["auricular"],
+    infinix:  ["auricular"],
+    oppo:     ["auricular"]
+};
+
+
+// ------------------------------------------------------------
+// INDUÇÃO (carregamento sem fio)
+// ------------------------------------------------------------
+//
+// Só os modelos desta lista mostram o campo de indução.
+// Nos demais aparece "—". Se faltar algum modelo, é só
+// acrescentar o nome (igual ao da lista de modelos) aqui.
+//
+// ------------------------------------------------------------
+
+const MODELOS_COM_INDUCAO = {
+
+    // iPhone: todos a partir do iPhone 8 (inclui os SE)
+    iphone: modelo => !/^iPhone (6|7)( |s|$)/.test(modelo),
+
+    // Samsung: linha S (a linha A não tem indução)
+    samsung: modelo => /^Galaxy S\d/.test(modelo),
+
+    motorola: new Set([
+        "Moto Edge+",
+        "Moto Edge 20 Pro",
+        "Moto Edge 30 Pro",
+        "Moto Edge 40 Pro",
+        "Moto Edge 50 Pro",
+        "Moto Edge 50 Ultra",
+        "Moto Edge 60 Pro"
+    ]),
+
+    xiaomi: new Set([
+        "Xiaomi 12",
+        "Xiaomi 13 Pro",
+        "Xiaomi 14",
+        "Xiaomi 14 Ultra"
+    ]),
+
+    infinix: new Set([
+        "Infinix Note 40 Pro"
+    ]),
+
+    oppo: new Set([
+        "Oppo Find X3 Pro",
+        "Oppo Find X5 Pro",
+        "Oppo Find X6 Pro",
+        "Oppo Find X7 Ultra",
+        "Oppo Find X8",
+        "Oppo Find X8 Pro"
+    ])
+
+    // Realme: nenhum modelo da lista tem indução
+};
+
+
+function temInducao(marca, modelo) {
+
+    const regra = MODELOS_COM_INDUCAO[marca];
+
+    if (!regra) {
+        return false;
+    }
+
+    return typeof regra === "function"
+        ? regra(modelo)
+        : regra.has(modelo);
+}
+
+
+// ------------------------------------------------------------
+// PEÇAS QUE EXISTEM SÓ EM ALGUNS MODELOS
+// ------------------------------------------------------------
+//
+// Cada regra recebe o nome do modelo e devolve true se ele TEM a
+// peça. Peças sem regra são consideradas presentes em todos os
+// modelos. Onde o modelo não tem a peça, a tabela mostra "—", e se
+// nenhum modelo da marca tem a peça, a coluna nem aparece.
+//
+// ------------------------------------------------------------
+
+// iPhones com botão Home (todos os outros têm Face ID)
+const IPHONES_COM_HOME = new Set([
+    "iPhone 6", "iPhone 6 Plus",
+    "iPhone 6s", "iPhone 6s Plus",
+    "iPhone 7", "iPhone 7 Plus",
+    "iPhone 8", "iPhone 8 Plus",
+    "iPhone SE (2020)", "iPhone SE (2022)"
+]);
+
+
+const REGRAS_PECAS = {
+
+    iphone: {
+        flexHome:   modelo => IPHONES_COM_HOME.has(modelo),
+        flexFaceId: modelo => !IPHONES_COM_HOME.has(modelo),
+
+        // iPhone Air só usa chip virtual (eSIM), sem gaveta
+        gaveta:     modelo => modelo !== "iPhone Air",
+        leitorChip: modelo => modelo !== "iPhone Air"
+    }
+};
+
+
+function temPeca(marca, modelo, pecaId) {
+
+    if (pecaId === "inducao") {
+        return temInducao(marca, modelo);
+    }
+
+    const regra = REGRAS_PECAS[marca]?.[pecaId];
+
+    return regra ? regra(modelo) : true;
+}
+
+
+// Peças que existem só em certas marcas
+const PECAS_SOMENTE_EM = {
+    auricular:  ["iphone"],
+    leitorChip: ["iphone"]
+};
+
+
+// Nome diferente da peça em uma marca (o id continua o mesmo,
+// então os preços já salvos são mantidos)
+const NOMES_POR_MARCA = {
+    iphone: { placa: "Flex de carga" }
+};
+
+
+function pecasDaMarca(marca) {
+
+    const removidas = [
+        ...(PECAS_REMOVIDAS[marca] || []),
+        ...Object.keys(PECAS_SOMENTE_EM).filter(
+            id => !PECAS_SOMENTE_EM[id].includes(marca)
+        )
+    ];
+
+    const existeNaMarca = peca =>
+        celulares[marca].some(modelo => temPeca(marca, modelo, peca.id));
+
+    const base = PECAS_COMUNS.filter(p =>
+        p.id !== "limpeza" &&
+        (!p.soMarcas || p.soMarcas.includes(marca)) &&
+        !removidas.includes(p.id) &&
+        existeNaMarca(p)
+    );
+
+    const extras = (PECAS_EXTRAS[marca] || []).filter(existeNaMarca);
+
+    const limpeza = PECAS_COMUNS.find(p => p.id === "limpeza");
+
+    const renomear = peca => ({
+        ...peca,
+        nome: NOMES_POR_MARCA[marca]?.[peca.id] || peca.nome
+    });
+
+    return [...base, ...extras, limpeza].map(renomear);
+}
 
 
 // ============================================================
 // LOCALSTORAGE
 // ============================================================
 
-function criarChaveLocal(
-    marca,
-    modelo,
-    peca
-) {
+function criarChaveLocal(marca, modelo, peca) {
 
-    return (
-        `arenacell_${marca}_${modelo}_${peca}`
-    );
+    return `arenacell_${marca}_${modelo}_${peca}`;
 }
 
 
-// ============================================================
-// SALVAR NO LOCALSTORAGE
-// ============================================================
+function salvarPrecoLocal(marca, modelo, peca, valor) {
 
-function salvarPrecoLocal(
-    marca,
-    modelo,
-    peca,
-    valor
-) {
-
-    const chave =
-        criarChaveLocal(
-            marca,
-            modelo,
-            peca
+    try {
+        localStorage.setItem(
+            criarChaveLocal(marca, modelo, peca),
+            valor
         );
+    } catch (erro) {
+        console.warn("Não foi possível salvar no navegador:", erro);
+    }
+}
 
 
-    localStorage.setItem(
-        chave,
-        valor
-    );
+function buscarPrecoLocal(marca, modelo, peca) {
+
+    try {
+        return localStorage.getItem(
+            criarChaveLocal(marca, modelo, peca)
+        ) || "";
+    } catch (erro) {
+        return "";
+    }
 }
 
 
 // ============================================================
-// BUSCAR DO LOCALSTORAGE
+// FIREBASE
 // ============================================================
 
-function buscarPrecoLocal(
-    marca,
-    modelo,
-    peca
-) {
+// O Firebase não aceita  . # $ [ ] /  nos nomes das chaves.
+// (ex.: "iPhone X/XS" criava um caminho dentro de outro caminho).
+// Modelos sem esses caracteres continuam com o mesmo nome de antes.
 
-    const chave =
-        criarChaveLocal(
-            marca,
-            modelo,
-            peca
-        );
+function chaveFirebase(texto) {
 
-
-    return (
-        localStorage.getItem(
-            chave
-        ) || ""
-    );
+    return String(texto).replace(/[.#$\[\]\/]/g, "_");
 }
 
 
-// ============================================================
-// FIREBASE - SALVAR PREÇO
-// ============================================================
+async function salvarPrecoFirebase(marca, modelo, peca, valor) {
 
-async function salvarPrecoFirebase(
-    marca,
-    modelo,
-    peca,
-    valor
-) {
-
-    if (
-        !FIREBASE_ATIVO ||
-        !db ||
-        !firebaseRef ||
-        !firebaseSet
-    ) {
-
+    if (!FIREBASE_ATIVO || !db || !firebaseRef || !firebaseSet) {
         return false;
     }
-
 
     try {
 
         const caminho =
-            `precos/${marca}/${modelo}/${peca}`;
+            `precos/${chaveFirebase(marca)}/${chaveFirebase(modelo)}/${chaveFirebase(peca)}`;
 
-
-        await firebaseSet(
-
-            firebaseRef(
-                db,
-                caminho
-            ),
-
-            valor
-        );
-
-
-        console.log(
-            "Preço salvo no Firebase:",
-            marca,
-            modelo,
-            peca,
-            valor
-        );
-
+        await firebaseSet(firebaseRef(db, caminho), valor);
 
         return true;
 
-
     } catch (erro) {
 
-        console.error(
-            "Erro ao salvar preço no Firebase:",
-            erro
-        );
-
+        console.error("Erro ao salvar preço no Firebase:", erro);
 
         return false;
     }
 }
 
 
-// ============================================================
-// FIREBASE - BUSCAR TODOS OS PREÇOS DA MARCA
-// ============================================================
-//
-// Em vez de fazer uma consulta para cada modelo,
-// fazemos apenas uma consulta:
-//
-// precos/iphone
-//
-// precos/samsung
-//
-// precos/motorola
-//
-// etc.
-//
-// ============================================================
+// Uma única consulta por marca: precos/iphone, precos/samsung...
 
-async function buscarPrecosFirebase(
-    marca
-) {
+async function buscarPrecosFirebase(marca) {
 
-    if (
-        !FIREBASE_ATIVO ||
-        !db ||
-        !firebaseRef ||
-        !firebaseGet
-    ) {
-
+    if (!FIREBASE_ATIVO || !db || !firebaseRef || !firebaseGet) {
         return {};
     }
-
 
     try {
 
-        const caminho =
-            `precos/${marca}`;
+        const snapshot = await firebaseGet(
+            firebaseRef(db, `precos/${chaveFirebase(marca)}`)
+        );
 
-
-        const snapshot =
-            await firebaseGet(
-
-                firebaseRef(
-                    db,
-                    caminho
-                )
-            );
-
-
-        if (
-            snapshot.exists()
-        ) {
-
-            return snapshot.val();
-        }
-
-
-        return {};
-
+        return snapshot.exists() ? snapshot.val() : {};
 
     } catch (erro) {
 
-        console.error(
-            "Erro ao buscar preços do Firebase:",
-            erro
-        );
-
+        console.error("Erro ao buscar preços do Firebase:", erro);
 
         return {};
     }
+}
+
+
+// ============================================================
+// STATUS DE SALVAMENTO (canto superior direito)
+// ============================================================
+
+let statusBase = {
+    estado: "conectando",
+    texto: "Conectando…"
+};
+
+let timerStatus = null;
+
+
+function mostrarStatus(estado, texto) {
+
+    const el = document.getElementById("statusSync");
+
+    if (!el) {
+        return;
+    }
+
+    el.dataset.estado = estado;
+
+    const textoEl = el.querySelector(".status-texto");
+
+    if (textoEl) {
+        textoEl.textContent = texto;
+    }
+}
+
+
+function definirStatusBase(estado, texto) {
+
+    statusBase = { estado, texto };
+
+    mostrarStatus(estado, texto);
+}
+
+
+function voltarStatusBase(atraso) {
+
+    clearTimeout(timerStatus);
+
+    timerStatus = setTimeout(() => {
+        mostrarStatus(statusBase.estado, statusBase.texto);
+    }, atraso);
 }
 
 
@@ -645,65 +804,93 @@ async function buscarPrecosFirebase(
 // SALVAR PREÇO
 // ============================================================
 
-async function salvarPreco(
-    marca,
-    modelo,
-    peca,
-    valor
-) {
+async function salvarPreco(marca, modelo, peca, valor) {
 
-    // --------------------------------------------------------
-    // 1. Salva imediatamente no navegador
-    // --------------------------------------------------------
+    // 1. Salva na hora no navegador
+    salvarPrecoLocal(marca, modelo, peca, valor);
 
-    salvarPrecoLocal(
-        marca,
-        modelo,
-        peca,
-        valor
-    );
+    // 2. Salva na nuvem
+    if (FIREBASE_ATIVO && db) {
 
+        clearTimeout(timerStatus);
+        mostrarStatus("salvando", "Salvando…");
 
-    // --------------------------------------------------------
-    // 2. Salva no Firebase
-    // --------------------------------------------------------
+        const salvo = await salvarPrecoFirebase(marca, modelo, peca, valor);
 
-    if (
-        FIREBASE_ATIVO &&
-        db
-    ) {
+        if (salvo) {
 
-        const salvo =
-            await salvarPrecoFirebase(
+            mostrarStatus("ok", "Salvo");
+            voltarStatusBase(1800);
 
-                marca,
-                modelo,
-                peca,
-                valor
-            );
+        } else {
 
+            console.warn("Preço salvo só neste aparelho; falha ao enviar para a nuvem.");
 
-        if (!salvo) {
-
-            console.warn(
-                "O preço foi salvo localmente, mas não foi possível salvar no Firebase."
-            );
+            mostrarStatus("erro", "Não sincronizou. Salvo só neste aparelho");
         }
+
+        return;
     }
+
+    mostrarStatus("ok", "Salvo neste aparelho");
+    voltarStatusBase(1800);
+}
+
+
+// Salvamento automático com atraso (enquanto digita)
+
+const temporizadoresSalvar = new Map();
+
+
+function chaveTemporizador(input) {
+
+    const { marca, modelo, peca } = input.dataset;
+
+    return `${marca}|${modelo}|${peca}`;
+}
+
+
+function programarSalvamento(input) {
+
+    const { marca, modelo, peca } = input.dataset;
+    const valor = input.value.trim();
+    const chave = chaveTemporizador(input);
+
+    // Guarda no navegador a cada tecla
+    salvarPrecoLocal(marca, modelo, peca, valor);
+
+    clearTimeout(temporizadoresSalvar.get(chave));
+
+    temporizadoresSalvar.set(
+        chave,
+        setTimeout(async () => {
+
+            temporizadoresSalvar.delete(chave);
+
+            await salvarPreco(marca, modelo, peca, valor);
+
+        }, 600)
+    );
+}
+
+
+async function salvarAgora(input) {
+
+    const { marca, modelo, peca } = input.dataset;
+    const chave = chaveTemporizador(input);
+
+    clearTimeout(temporizadoresSalvar.get(chave));
+    temporizadoresSalvar.delete(chave);
+
+    await salvarPreco(marca, modelo, peca, input.value.trim());
 }
 
 
 // ============================================================
-// ESCAPAR HTML
-// ============================================================
-//
-// Evita problemas caso um modelo contenha caracteres especiais.
-//
+// SEGURANÇA DO HTML
 // ============================================================
 
-function escaparHTML(
-    valor
-) {
+function escaparHTML(valor) {
 
     return String(valor)
         .replaceAll("&", "&amp;")
@@ -714,700 +901,639 @@ function escaparHTML(
 }
 
 
+const escaparAtributo = escaparHTML;
+
+
 // ============================================================
-// ESCAPAR ATRIBUTO HTML
+// PEÇAS EXIBIDAS (mostrar / ocultar colunas)
 // ============================================================
 
-function escaparAtributo(
-    valor
-) {
+const CHAVE_COLUNAS_OCULTAS = "arenacell_colunas_ocultas";
 
-    return escaparHTML(
-        valor
-    );
+
+function lerColunasOcultas() {
+
+    try {
+        return new Set(
+            JSON.parse(localStorage.getItem(CHAVE_COLUNAS_OCULTAS) || "[]")
+        );
+    } catch (erro) {
+        return new Set();
+    }
 }
+
+
+function salvarColunasOcultas(conjunto) {
+
+    try {
+        localStorage.setItem(
+            CHAVE_COLUNAS_OCULTAS,
+            JSON.stringify([...conjunto])
+        );
+    } catch (erro) {
+        console.warn("Não foi possível guardar as colunas escolhidas.");
+    }
+}
+
+
+function aplicarColunas() {
+
+    const ocultas = lerColunasOcultas();
+
+    document.querySelectorAll("#tabelaModelos [data-col]").forEach(celula => {
+        celula.hidden = ocultas.has(celula.dataset.col);
+    });
+
+    atualizarPreenchimento();
+}
+
+
+function montarSeletorPecas(pecas) {
+
+    const caixa = document.getElementById("seletorPecas");
+
+    if (!caixa) {
+        return;
+    }
+
+    const ocultas = lerColunasOcultas();
+
+    caixa.innerHTML = pecas.map(peca => `
+        <button
+            type="button"
+            class="chip"
+            data-chip="${escaparAtributo(peca.id)}"
+            aria-pressed="${ocultas.has(peca.id) ? "false" : "true"}"
+        >${escaparHTML(peca.nome)}</button>
+    `).join("");
+}
+
+
+function alternarColuna(id, botao) {
+
+    const ocultas = lerColunasOcultas();
+
+    if (ocultas.has(id)) {
+        ocultas.delete(id);
+    } else {
+        ocultas.add(id);
+    }
+
+    salvarColunasOcultas(ocultas);
+
+    botao.setAttribute("aria-pressed", ocultas.has(id) ? "false" : "true");
+
+    aplicarColunas();
+}
+
+
+// ============================================================
+// FORMATAÇÃO DE PREÇO
+// ============================================================
+//
+// "120" vira "120,00" e "1200,5" vira "1.200,50".
+// Textos que não são números (ex.: "consultar") ficam como foram
+// digitados.
+//
+// ============================================================
+
+function formatarPreco(texto) {
+
+    let t = String(texto).replace(/R\$|\s/g, "");
+
+    if (t === "") {
+        return "";
+    }
+
+    const ultimaVirgula = t.lastIndexOf(",");
+    const ultimoPonto = t.lastIndexOf(".");
+    const posicao = Math.max(ultimaVirgula, ultimoPonto);
+
+    let inteiro = t;
+    let decimais = "";
+
+    if (posicao >= 0) {
+
+        const depois = t.slice(posicao + 1);
+
+        // "1.200" (ponto + 3 dígitos, sem vírgula) é milhar
+        if (ultimaVirgula === -1 && /^\d{3}$/.test(depois)) {
+            inteiro = t.replace(/\./g, "");
+        } else {
+            inteiro = t.slice(0, posicao).replace(/[.,]/g, "");
+            decimais = depois;
+        }
+    }
+
+    if (!/^\d*$/.test(inteiro) || !/^\d*$/.test(decimais)) {
+        return null;
+    }
+
+    const numero = Number((inteiro || "0") + "." + (decimais || "0"));
+
+    if (!isFinite(numero)) {
+        return null;
+    }
+
+    return numero.toLocaleString("pt-BR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+}
+
+
+// ============================================================
+// PREENCHIMENTO (quantos preços já foram cadastrados)
+// ============================================================
+
+function atualizarPreenchimento() {
+
+    const texto = document.getElementById("textoPreenchimento");
+    const barra = document.getElementById("barraPreenchimento");
+
+    if (!texto || !barra) {
+        return;
+    }
+
+    const campos = document.querySelectorAll(
+        "#tabelaModelos td:not([hidden]) .preco"
+    );
+
+    let preenchidos = 0;
+
+    campos.forEach(campo => {
+        if (campo.value.trim() !== "") {
+            preenchidos++;
+        }
+    });
+
+    const porcentagem = campos.length
+        ? Math.round((preenchidos / campos.length) * 100)
+        : 0;
+
+    barra.style.width = `${porcentagem}%`;
+
+    texto.textContent = `${porcentagem}% preenchido`;
+}
+
+
+// ============================================================
+// EXPORTAR PLANILHA (CSV, abre direto no Excel)
+// ============================================================
+
+function exportarPlanilha() {
+
+    const tabela = document.getElementById("tabelaModelos");
+
+    if (!tabela || !marcaAtual) {
+        return;
+    }
+
+    const escapar = valor =>
+        `"${String(valor).replaceAll('"', '""')}"`;
+
+    const colunasVisiveis = Array.from(
+        tabela.querySelectorAll("thead th")
+    ).filter(th => !th.hidden);
+
+    const linhas = [
+        colunasVisiveis.map(th => escapar(th.textContent.trim())).join(";")
+    ];
+
+    tabela.querySelectorAll("tbody tr").forEach(tr => {
+
+        const celulas = Array.from(tr.children).filter(c => !c.hidden);
+
+        linhas.push(
+            celulas.map(celula => {
+
+                const campo = celula.querySelector(".preco");
+
+                if (campo) {
+                    return escapar(campo.value.trim());
+                }
+
+                return escapar(
+                    celula.classList.contains("modelo")
+                        ? celula.textContent.trim()
+                        : ""
+                );
+
+            }).join(";")
+        );
+    });
+
+    const dataHoje = new Date().toISOString().slice(0, 10);
+
+    // \uFEFF faz o Excel reconhecer os acentos
+    const arquivo = new Blob(
+        ["\uFEFF" + linhas.join("\r\n")],
+        { type: "text/csv;charset=utf-8;" }
+    );
+
+    const link = document.createElement("a");
+
+    link.href = URL.createObjectURL(arquivo);
+    link.download = `arenacell-${marcaAtual}-${dataHoje}.csv`;
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+}
+
+
+// ============================================================
+// IMPRESSÃO (só linhas com preço)
+// ============================================================
+
+window.addEventListener("beforeprint", () => {
+
+    document.querySelectorAll("#tabelaModelos tbody tr").forEach(tr => {
+
+        const temPreco = Array.from(tr.querySelectorAll(".preco"))
+            .some(campo => campo.value.trim() !== "");
+
+        tr.classList.toggle("sem-preco", !temPreco);
+    });
+
+    const data = document.getElementById("dataImpressao");
+
+    if (data) {
+        data.textContent =
+            "Lista de preços atualizada em " +
+            new Date().toLocaleDateString("pt-BR");
+    }
+});
+
+
+window.addEventListener("afterprint", () => {
+
+    document.querySelectorAll("#tabelaModelos tr.sem-preco")
+        .forEach(tr => tr.classList.remove("sem-preco"));
+});
 
 
 // ============================================================
 // ABRIR MARCA
 // ============================================================
 
-async function abrirMarca(
-    marca
-) {
+let marcaAtual = null;
 
-    const titulo =
-        document.getElementById(
-            "tituloMarca"
-        );
 
+function montarLinha(marca, modelo, pecas, dadosMarca) {
 
-    const conteudo =
-        document.getElementById(
-            "conteudo"
-        );
+    const dadosModelo = dadosMarca[chaveFirebase(modelo)] || {};
 
+    const celulas = pecas.map(peca => {
 
-    // --------------------------------------------------------
-    // Verifica elementos HTML
-    // --------------------------------------------------------
+        // Modelo sem esta peça: não mostra campo de preço
+        if (!temPeca(marca, modelo, peca.id)) {
 
-    if (
-        !titulo ||
-        !conteudo
-    ) {
-
-        console.error(
-            "Não foi possível encontrar tituloMarca ou conteudo."
-        );
-
-        return;
-    }
-
-
-    // --------------------------------------------------------
-    // Verifica se a marca existe
-    // --------------------------------------------------------
-
-    if (
-        typeof celulares === "undefined" ||
-        !celulares[marca]
-    ) {
-
-        console.error(
-            "Marca não encontrada:",
-            marca
-        );
-
-        return;
-    }
-
-
-    // --------------------------------------------------------
-    // Atualiza título
-    // --------------------------------------------------------
-
-    titulo.textContent =
-        marca.toUpperCase();
-
-
-    // --------------------------------------------------------
-    // Mostra carregamento
-    // --------------------------------------------------------
-
-    conteudo.innerHTML = `
-
-        <div class="carregando">
-
-            Carregando modelos...
-
-        </div>
-
-    `;
-
-
-    // --------------------------------------------------------
-    // Busca todos os preços da marca
-    // --------------------------------------------------------
-
-    let precosFirebase = {};
-
-
-    if (
-        FIREBASE_ATIVO &&
-        db
-    ) {
-
-        precosFirebase =
-            await buscarPrecosFirebase(
-                marca
-            );
-    }
-
-
-    // --------------------------------------------------------
-    // Cria tabela
-    // --------------------------------------------------------
-
-    let html = `
-
-        <table id="tabelaModelos">
-
-            <thead>
-
-                <tr>
-
-                    <th>Modelo</th>
-
-                    <th>Frontal</th>
-
-                    <th>Placa de Carga</th>
-
-                    <th>Bateria</th>
-
-                    <th>FPC</th>
-
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-    `;
-
-
-    // --------------------------------------------------------
-    // Cria linhas dos modelos
-    // --------------------------------------------------------
-
-    celulares[marca].forEach(
-
-        modelo => {
-
-            const dadosFirebase =
-                precosFirebase[modelo] || {};
-
-
-            const frontal =
-                dadosFirebase.frontal !== undefined
-                    ? dadosFirebase.frontal
-                    : buscarPrecoLocal(
-                        marca,
-                        modelo,
-                        "frontal"
-                    );
-
-
-            const placa =
-                dadosFirebase.placa !== undefined
-                    ? dadosFirebase.placa
-                    : buscarPrecoLocal(
-                        marca,
-                        modelo,
-                        "placa"
-                    );
-
-
-            const bateria =
-                dadosFirebase.bateria !== undefined
-                    ? dadosFirebase.bateria
-                    : buscarPrecoLocal(
-                        marca,
-                        modelo,
-                        "bateria"
-                    );
-
-
-            const fpc =
-                dadosFirebase.fpc !== undefined
-                    ? dadosFirebase.fpc
-                    : buscarPrecoLocal(
-                        marca,
-                        modelo,
-                        "fpc"
-                    );
-
-
-            html += `
-
-                <tr>
-
-                    <td class="modelo">
-
-                        ${escaparHTML(modelo)}
-
-                    </td>
-
-
-                    <td>
-
-                        <input
-                            type="text"
-                            class="preco"
-                            placeholder="R$"
-                            value="${escaparAtributo(frontal)}"
-                            data-marca="${escaparAtributo(marca)}"
-                            data-modelo="${escaparAtributo(modelo)}"
-                            data-peca="frontal"
-                        >
-
-                    </td>
-
-
-                    <td>
-
-                        <input
-                            type="text"
-                            class="preco"
-                            placeholder="R$"
-                            value="${escaparAtributo(placa)}"
-                            data-marca="${escaparAtributo(marca)}"
-                            data-modelo="${escaparAtributo(modelo)}"
-                            data-peca="placa"
-                        >
-
-                    </td>
-
-
-                    <td>
-
-                        <input
-                            type="text"
-                            class="preco"
-                            placeholder="R$"
-                            value="${escaparAtributo(bateria)}"
-                            data-marca="${escaparAtributo(marca)}"
-                            data-modelo="${escaparAtributo(modelo)}"
-                            data-peca="bateria"
-                        >
-
-                    </td>
-
-
-                    <td>
-
-                        <input
-                            type="text"
-                            class="preco"
-                            placeholder="R$"
-                            value="${escaparAtributo(fpc)}"
-                            data-marca="${escaparAtributo(marca)}"
-                            data-modelo="${escaparAtributo(modelo)}"
-                            data-peca="fpc"
-                        >
-
-                    </td>
-
-                </tr>
-
+            return `
+                <td data-col="${escaparAtributo(peca.id)}">
+                    <span class="nao-se-aplica" title="Este modelo não tem esta peça">—</span>
+                </td>
             `;
         }
-    );
+
+        const valorNuvem = dadosModelo[peca.id];
+
+        const valorSalvo = valorNuvem !== undefined
+            ? valorNuvem
+            : buscarPrecoLocal(marca, modelo, peca.id);
+
+        // Só na tela: valores antigos aparecem já formatados
+        const valor = formatarPreco(valorSalvo) ?? valorSalvo;
+
+        return `
+            <td data-col="${escaparAtributo(peca.id)}">
+                <label class="preco-campo">
+                    <span aria-hidden="true">R$</span>
+                    <input
+                        type="text"
+                        inputmode="decimal"
+                        autocomplete="off"
+                        class="preco"
+                        placeholder="0,00"
+                        value="${escaparAtributo(valor)}"
+                        aria-label="${escaparAtributo(peca.nome)} - ${escaparAtributo(modelo)}"
+                        data-marca="${escaparAtributo(marca)}"
+                        data-modelo="${escaparAtributo(modelo)}"
+                        data-peca="${escaparAtributo(peca.id)}"
+                    >
+                </label>
+            </td>
+        `;
+    }).join("");
+
+    return `
+        <tr data-modelo="${escaparAtributo(modelo)}">
+            <th scope="row" class="modelo">${escaparHTML(modelo)}</th>
+            ${celulas}
+        </tr>
+    `;
+}
 
 
-    html += `
+async function abrirMarca(marca) {
 
-            </tbody>
+    const titulo = document.getElementById("tituloMarca");
+    const descricao = document.getElementById("descricaoPagina");
+    const conteudo = document.getElementById("conteudo");
+    const barra = document.getElementById("barraFerramentas");
 
-        </table>
+    if (!titulo || !conteudo) {
+        console.error("Não foi possível encontrar tituloMarca ou conteudo.");
+        return;
+    }
 
+    if (!celulares[marca]) {
+        console.error("Marca não encontrada:", marca);
+        return;
+    }
+
+    marcaAtual = marca;
+
+    // Botão ativo no menu
+    document.querySelectorAll(".marca").forEach(botao => {
+
+        const ativo = botao.dataset.marca === marca;
+
+        botao.classList.toggle("ativa", ativo);
+
+        if (ativo) {
+            botao.setAttribute("aria-current", "true");
+        } else {
+            botao.removeAttribute("aria-current");
+        }
+    });
+
+    titulo.textContent = NOMES_MARCAS[marca] || marca;
+
+    if (descricao) {
+        descricao.textContent =
+            "Digite os valores direto na tabela. Tudo é salvo automaticamente.";
+    }
+
+    if (barra) {
+        barra.hidden = true;
+    }
+
+    conteudo.innerHTML = `
+        <div class="carregando" role="status">
+            <span class="spinner" aria-hidden="true"></span>
+            Carregando modelos…
+        </div>
     `;
 
+    // Preços salvos na nuvem
+    let dadosMarca = {};
 
-    // --------------------------------------------------------
-    // Mostra tabela
-    // --------------------------------------------------------
+    if (FIREBASE_ATIVO && db) {
+        dadosMarca = await buscarPrecosFirebase(marca);
+    }
 
-    conteudo.innerHTML =
-        html;
+    // O usuário clicou em outra marca enquanto carregava
+    if (marcaAtual !== marca) {
+        return;
+    }
 
+    const pecas = pecasDaMarca(marca);
 
-    // --------------------------------------------------------
-    // Adiciona eventos
-    // --------------------------------------------------------
+    const cabecalho = pecas.map(peca => `
+        <th scope="col" data-col="${escaparAtributo(peca.id)}">${escaparHTML(peca.nome)}</th>
+    `).join("");
 
-    adicionarEventosPrecos();
+    const linhas = celulares[marca]
+        .map(modelo => montarLinha(marca, modelo, pecas, dadosMarca))
+        .join("");
 
+    conteudo.innerHTML = `
+        <div class="tabela-scroll">
+            <table id="tabelaModelos">
+                <thead>
+                    <tr>
+                        <th scope="col" class="modelo-titulo">Modelo</th>
+                        ${cabecalho}
+                    </tr>
+                </thead>
+                <tbody>
+                    ${linhas}
+                </tbody>
+            </table>
+            <div class="sem-resultado" id="semResultado" hidden>
+                <h3>Nenhum modelo encontrado</h3>
+                <p>Confira a escrita ou tente outro nome.</p>
+            </div>
+        </div>
+    `;
 
-    // --------------------------------------------------------
-    // Limpa pesquisa
-    // --------------------------------------------------------
+    montarSeletorPecas(pecas);
+    aplicarColunas();
 
-    const pesquisa =
-        document.getElementById(
-            "pesquisa"
-        );
-
+    const pesquisa = document.getElementById("pesquisa");
 
     if (pesquisa) {
-
-        pesquisa.value =
-            "";
-    }
-}
-
-
-// ============================================================
-// SALVAMENTO AUTOMÁTICO COM ATRASO
-// ============================================================
-
-const temporizadoresSalvar =
-    new Map();
-
-
-function programarSalvamento(
-    input
-) {
-
-    const marca =
-        input.dataset.marca;
-
-
-    const modelo =
-        input.dataset.modelo;
-
-
-    const peca =
-        input.dataset.peca;
-
-
-    const valor =
-        input.value.trim();
-
-
-    const chave =
-        `${marca}|${modelo}|${peca}`;
-
-
-    // Salva imediatamente no LocalStorage
-
-    salvarPrecoLocal(
-        marca,
-        modelo,
-        peca,
-        valor
-    );
-
-
-    // Cancela timer anterior
-
-    if (
-        temporizadoresSalvar.has(
-            chave
-        )
-    ) {
-
-        clearTimeout(
-            temporizadoresSalvar.get(
-                chave
-            )
-        );
+        pesquisa.value = "";
     }
 
+    if (barra) {
+        barra.hidden = false;
+    }
 
-    // Salva no Firebase após 500ms
-    // sem novas alterações
-
-    const timer =
-        setTimeout(
-
-            async () => {
-
-                await salvarPreco(
-
-                    marca,
-
-                    modelo,
-
-                    peca,
-
-                    valor
-                );
-
-
-                temporizadoresSalvar.delete(
-                    chave
-                );
-
-            },
-
-            500
-
-        );
-
-
-    temporizadoresSalvar.set(
-        chave,
-        timer
-    );
+    atualizarContagem(celulares[marca].length, celulares[marca].length);
 }
 
 
 // ============================================================
-// EVENTOS DOS CAMPOS DE PREÇO
+// PESQUISA
 // ============================================================
 
-function adicionarEventosPrecos() {
+function normalizarTexto(texto) {
 
-    const inputs =
-        document.querySelectorAll(
-            ".preco"
-        );
-
-
-    inputs.forEach(
-
-        input => {
-
-            // ------------------------------------------------
-            // Salva enquanto digita
-            // ------------------------------------------------
-
-            input.addEventListener(
-
-                "input",
-
-                function() {
-
-                    programarSalvamento(
-                        this
-                    );
-
-                }
-
-            );
-
-
-            // ------------------------------------------------
-            // Salva ao sair do campo
-            // ------------------------------------------------
-
-            input.addEventListener(
-
-                "change",
-
-                async function() {
-
-                    const marca =
-                        this.dataset.marca;
-
-
-                    const modelo =
-                        this.dataset.modelo;
-
-
-                    const peca =
-                        this.dataset.peca;
-
-
-                    const valor =
-                        this.value.trim();
-
-
-                    await salvarPreco(
-
-                        marca,
-
-                        modelo,
-
-                        peca,
-
-                        valor
-                    );
-
-                }
-
-            );
-
-
-            // ------------------------------------------------
-            // Salva ao pressionar Enter
-            // ------------------------------------------------
-
-            input.addEventListener(
-
-                "keydown",
-
-                function(event) {
-
-                    if (
-                        event.key === "Enter"
-                    ) {
-
-                        event.preventDefault();
-
-                        this.blur();
-
-                    }
-
-                }
-
-            );
-
-        }
-
-    );
+    return String(texto)
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim();
 }
 
 
-// ============================================================
-// PESQUISAR MODELO
-// ============================================================
+function atualizarContagem(visiveis, total) {
+
+    const contagem = document.getElementById("contagem");
+
+    if (!contagem) {
+        return;
+    }
+
+    contagem.textContent = visiveis === total
+        ? `${total} modelos`
+        : `${visiveis} de ${total} modelos`;
+}
+
 
 function pesquisarModelo() {
 
-    const pesquisa =
-        document.getElementById(
-            "pesquisa"
-        );
-
+    const pesquisa = document.getElementById("pesquisa");
 
     if (!pesquisa) {
-
         return;
     }
 
+    const filtro = normalizarTexto(pesquisa.value);
 
-    const filtro =
-        pesquisa.value
-            .toLowerCase()
-            .trim();
+    const linhas = document.querySelectorAll("#tabelaModelos tbody tr");
 
+    let visiveis = 0;
 
-    const linhas =
-        document.querySelectorAll(
-            "#tabelaModelos tbody tr"
-        );
+    linhas.forEach(linha => {
 
+        const corresponde =
+            normalizarTexto(linha.dataset.modelo).includes(filtro);
 
-    linhas.forEach(
+        linha.hidden = !corresponde;
 
-        linha => {
-
-            const modeloElemento =
-                linha.querySelector(
-                    ".modelo"
-                );
-
-
-            if (!modeloElemento) {
-
-                return;
-            }
-
-
-            const modelo =
-                modeloElemento.textContent
-                    .toLowerCase()
-                    .trim();
-
-
-            linha.style.display =
-                modelo.includes(
-                    filtro
-                )
-                    ? ""
-                    : "none";
-
+        if (corresponde) {
+            visiveis++;
         }
+    });
 
-    );
+    const semResultado = document.getElementById("semResultado");
+
+    if (semResultado) {
+        semResultado.hidden = visiveis > 0;
+    }
+
+    atualizarContagem(visiveis, linhas.length);
 }
 
 
 // ============================================================
-// CONFIGURAR BOTÕES DAS MARCAS
+// TECLADO NA TABELA
 // ============================================================
 //
-// Funciona com:
+// Enter / seta para baixo: próximo modelo na mesma peça
+// Seta para cima: modelo anterior
 //
-// onclick="abrirMarca('iphone')"
-//
-// e também com:
-//
-// data-marca="iphone"
-//
+// ============================================================
+
+function moverFoco(input, direcao) {
+
+    const celula = input.closest("td");
+    const linha = celula.parentElement;
+    const posicao = Array.from(linha.children).indexOf(celula);
+
+    let alvo = linha;
+
+    do {
+        alvo = direcao > 0
+            ? alvo.nextElementSibling
+            : alvo.previousElementSibling;
+    } while (alvo && alvo.hidden);
+
+    if (!alvo) {
+        return;
+    }
+
+    const campo = alvo.children[posicao]?.querySelector(".preco");
+
+    if (campo) {
+        campo.focus();
+        campo.select();
+    }
+}
+
+
+function configurarEventosTabela() {
+
+    const conteudo = document.getElementById("conteudo");
+
+    if (!conteudo) {
+        return;
+    }
+
+    conteudo.addEventListener("input", evento => {
+
+        if (evento.target.matches(".preco")) {
+            programarSalvamento(evento.target);
+            atualizarPreenchimento();
+        }
+    });
+
+    conteudo.addEventListener("change", evento => {
+
+        if (evento.target.matches(".preco")) {
+
+            const formatado = formatarPreco(evento.target.value);
+
+            if (formatado !== null) {
+                evento.target.value = formatado;
+            }
+
+            salvarAgora(evento.target);
+            atualizarPreenchimento();
+        }
+    });
+
+    conteudo.addEventListener("keydown", evento => {
+
+        if (!evento.target.matches(".preco")) {
+            return;
+        }
+
+        if (evento.key === "Enter" || evento.key === "ArrowDown") {
+
+            evento.preventDefault();
+            moverFoco(evento.target, 1);
+
+        } else if (evento.key === "ArrowUp") {
+
+            evento.preventDefault();
+            moverFoco(evento.target, -1);
+        }
+    });
+}
+
+
+// ============================================================
+// BOTÕES DAS MARCAS
 // ============================================================
 
 function configurarBotoesMarcas() {
 
-    const botoes = document.querySelectorAll(".marca");
+    document.querySelectorAll(".marca").forEach(botao => {
 
-    console.log("Botões encontrados:", botoes.length);
+        const marca = botao.dataset.marca;
 
-    botoes.forEach((botao) => {
+        const quantidade = botao.querySelector(".marca-qtd");
 
-        botao.addEventListener("click", () => {
+        if (quantidade && celulares[marca]) {
+            quantidade.textContent = celulares[marca].length;
+        }
 
-            const marca = botao.getAttribute("data-marca");
-
-            console.log("Botão clicado:", marca);
-
-            if (!marca) {
-                console.error("Este botão não possui data-marca.");
-                return;
-            }
-
-            abrirMarca(marca);
-
-        });
-
+        botao.addEventListener("click", () => abrirMarca(marca));
     });
-
 }
 
 
 // ============================================================
 // SALVAR DADOS ANTES DE FECHAR
 // ============================================================
-//
-// O LocalStorage é salvo imediatamente durante a digitação.
-// Isso garante que os dados locais permaneçam mesmo se a página
-// for fechada.
-//
-// O Firebase é sincronizado pelo salvamento automático.
-//
-// ============================================================
 
-window.addEventListener(
+window.addEventListener("beforeunload", () => {
 
-    "beforeunload",
+    document.querySelectorAll(".preco").forEach(input => {
 
-    function() {
+        const { marca, modelo, peca } = input.dataset;
 
-        const inputs =
-            document.querySelectorAll(
-                ".preco"
-            );
-
-
-        inputs.forEach(
-
-            input => {
-
-                const marca =
-                    input.dataset.marca;
-
-
-                const modelo =
-                    input.dataset.modelo;
-
-
-                const peca =
-                    input.dataset.peca;
-
-
-                const valor =
-                    input.value.trim();
-
-
-                if (
-                    marca &&
-                    modelo &&
-                    peca
-                ) {
-
-                    salvarPrecoLocal(
-
-                        marca,
-
-                        modelo,
-
-                        peca,
-
-                        valor
-
-                    );
-
-                }
-
-            }
-
-        );
-
-    }
-
-);
+        if (marca && modelo && peca) {
+            salvarPrecoLocal(marca, modelo, peca, input.value.trim());
+        }
+    });
+});
 
 
 // ============================================================
@@ -1416,35 +1542,43 @@ window.addEventListener(
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-    console.log("Página carregada.");
-
     configurarBotoesMarcas();
+    configurarEventosTabela();
 
     const pesquisa = document.getElementById("pesquisa");
 
     if (pesquisa) {
-        pesquisa.addEventListener(
-            "input",
-            pesquisarModelo
-        );
+        pesquisa.addEventListener("input", pesquisarModelo);
     }
 
-    await iniciarFirebase();
+    document.getElementById("botaoExportar")
+        ?.addEventListener("click", exportarPlanilha);
 
-    console.log("ArenaCell iniciado com sucesso!");
+    document.getElementById("botaoImprimir")
+        ?.addEventListener("click", () => window.print());
 
+    const seletor = document.getElementById("seletorPecas");
+
+    if (seletor) {
+        seletor.addEventListener("click", evento => {
+
+            const botao = evento.target.closest("[data-chip]");
+
+            if (botao) {
+                alternarColuna(botao.dataset.chip, botao);
+            }
+        });
+    }
+
+    const conectado = await iniciarFirebase();
+
+    if (conectado) {
+        definirStatusBase("ok", "Sincronizado com a nuvem");
+    } else {
+        definirStatusBase("local", "Só neste aparelho");
+    }
 });
 
 
-// ============================================================
-// DISPONIBILIZA ABRIR MARCA GLOBALMENTE
-// ============================================================
-//
-// Permite que o seu HTML atual continue funcionando:
-//
-// onclick="abrirMarca('iphone')"
-//
-// ============================================================
-
-window.abrirMarca =
-    abrirMarca;
+// Permite chamar abrirMarca('iphone') direto do HTML, se necessário
+window.abrirMarca = abrirMarca;
