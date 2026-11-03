@@ -1,6 +1,6 @@
 /* =========================================================
-   ARENACELL - CATÁLOGO DE PREÇOS
-   Identidade: azul profundo + laranja da marca
+   ARENACELL - CATÁLOGO DE PEÇAS
+   Layout: topo + faixa de marcas + tabela em largura total
 ========================================================= */
 
 :root {
@@ -8,20 +8,21 @@
     --azul-escuro: #0a2a5e;
     --azul-claro: #e8f0fc;
     --laranja: #ff7f00;
-    --laranja-escuro: #c25f00;
 
-    --fundo: #f1f4f9;
+    --fundo: #eef1f6;
     --superficie: #ffffff;
-    --linha: #dfe5ee;
-    --texto: #1b2433;
-    --texto-suave: #5b6779;
+    --linha: #dde3ed;
+    --linha-suave: #edf0f5;
+    --cabecalho-tabela: #e6ecf6;
+    --texto: #17202e;
+    --texto-suave: #5a6679;
 
     --ok: #1a8a4a;
     --erro: #c62828;
 
     --raio: 10px;
-    --altura-topo: 68px;
-    --largura-menu: 248px;
+    --altura-topo: 64px;
+    --altura-menu: 62px;
 }
 
 
@@ -52,6 +53,7 @@ body {
 
 button,
 input,
+select,
 summary {
     font-family: inherit;
 }
@@ -79,7 +81,7 @@ summary {
 
 
 /* =========================================================
-   CABEÇALHO
+   TOPO
 ========================================================= */
 
 .topbar {
@@ -92,23 +94,25 @@ summary {
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+    gap: 20px;
 
     background: var(--superficie);
-    border-bottom: 3px solid var(--laranja);
+    border-bottom: 1px solid var(--linha);
 }
 
 .marca-principal {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
     min-width: 0;
+
+    color: inherit;
+    text-decoration: none;
 }
 
 .logo {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     object-fit: contain;
     border-radius: 50%;
     flex-shrink: 0;
@@ -116,7 +120,7 @@ summary {
 
 .marca-principal h1 {
     margin: 0;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 800;
     line-height: 1.1;
     letter-spacing: -0.02em;
@@ -125,7 +129,128 @@ summary {
 
 .marca-principal p {
     margin: 2px 0 0;
-    font-size: 13px;
+    font-size: 12.5px;
+    color: var(--texto-suave);
+}
+
+
+/* Busca em todas as marcas */
+
+.busca-global {
+    position: relative;
+
+    flex: 1;
+    max-width: 460px;
+    height: 42px;
+    margin: 0 auto;
+    padding: 0 12px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--texto-suave);
+    background: var(--fundo);
+    border: 1px solid var(--linha);
+    border-radius: var(--raio);
+
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.busca-global:focus-within {
+    background: #fff;
+    border-color: var(--azul);
+    box-shadow: 0 0 0 3px rgba(0, 74, 173, 0.15);
+}
+
+.busca-global input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+
+    border: none;
+    outline: none;
+    background: transparent;
+
+    font-size: 14px;
+    color: var(--texto);
+}
+
+.busca-global input:focus-visible {
+    outline: none;
+}
+
+.busca-global kbd {
+    padding: 2px 7px;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--texto-suave);
+
+    background: #fff;
+    border: 1px solid var(--linha);
+    border-radius: 6px;
+}
+
+.busca-global:focus-within kbd {
+    display: none;
+}
+
+.resultados {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 8px);
+    z-index: 60;
+
+    margin: 0;
+    padding: 6px;
+
+    list-style: none;
+
+    background: #fff;
+    border: 1px solid var(--linha);
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(10, 42, 94, 0.18);
+}
+
+.resultados button {
+    width: 100%;
+    padding: 9px 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--texto);
+    text-align: left;
+
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.resultados button:hover,
+.resultados button:focus-visible {
+    background: var(--azul-claro);
+    outline: none;
+}
+
+.resultados small {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--texto-suave);
+}
+
+.sem-achado {
+    padding: 12px;
+    font-size: 14px;
     color: var(--texto-suave);
 }
 
@@ -178,66 +303,55 @@ summary {
 
 
 /* =========================================================
-   ESTRUTURA
-========================================================= */
-
-.container {
-    display: flex;
-    align-items: flex-start;
-    min-height: calc(100vh - var(--altura-topo));
-}
-
-
-/* =========================================================
-   MENU LATERAL
+   FAIXA DE MARCAS
 ========================================================= */
 
 .menu {
     position: sticky;
     top: var(--altura-topo);
+    z-index: 25;
 
-    width: var(--largura-menu);
-    height: calc(100vh - var(--altura-topo));
-    flex-shrink: 0;
+    height: var(--altura-menu);
+    padding: 0 20px;
 
-    padding: 24px 16px;
-    overflow-y: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
 
-    background: var(--azul-escuro);
-    color: #fff;
-}
-
-.menu-titulo {
-    margin: 0 0 14px 10px;
-    font-size: 13px;
-    font-weight: 600;
-    color: #9fb4d9;
+    background: var(--superficie);
+    border-bottom: 1px solid var(--linha);
+    box-shadow: 0 1px 0 rgba(10, 42, 94, 0.03);
 }
 
 .menu-lista {
+    height: 100%;
     display: flex;
-    flex-direction: column;
-    gap: 6px;
+    align-items: stretch;
+    gap: 2px;
+}
+
+.menu-divisor {
+    width: 1px;
+    margin: 14px 10px;
+    background: var(--linha);
 }
 
 .marca {
-    width: 100%;
+    flex-shrink: 0;
 
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 
-    padding: 10px 12px;
+    padding: 0 14px;
+
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--texto-suave);
 
     background: transparent;
-    color: #e6edfa;
-
     border: none;
-    border-radius: var(--raio);
-
-    font-size: 15px;
-    font-weight: 600;
-    text-align: left;
+    border-bottom: 3px solid transparent;
+    border-radius: 0;
 
     cursor: pointer;
 
@@ -245,52 +359,75 @@ summary {
 }
 
 .marca:hover {
-    background: rgba(255, 255, 255, 0.1);
+    color: var(--azul-escuro);
+    background: var(--fundo);
 }
 
-.marca-sigla {
-    width: 36px;
-    height: 36px;
-    flex-shrink: 0;
+.marca.ativa {
+    color: var(--azul-escuro);
+    border-bottom-color: var(--laranja);
+}
+
+.marca-logo,
+.marca-icone {
+    width: 54px;
+    height: 32px;
 
     display: grid;
     place-items: center;
 
-    font-size: 13px;
-    font-weight: 800;
-
-    color: #fff;
-    background: rgba(255, 255, 255, 0.14);
-    border-radius: 8px;
+    border-radius: 7px;
 }
 
-.marca-nome {
-    flex: 1;
+.marca-logo {
+    background: #fff;
+    border: 1px solid var(--linha);
+}
+
+.marca-logo img {
+    max-width: 40px;
+    max-height: 18px;
+    object-fit: contain;
+}
+
+.marca-icone {
+    width: 32px;
+    color: var(--azul);
+    background: var(--azul-claro);
 }
 
 .marca-qtd {
+    padding: 1px 8px;
+
     font-size: 12px;
-    font-weight: 600;
-    color: #9fb4d9;
+    font-weight: 700;
+    color: var(--texto-suave);
     font-variant-numeric: tabular-nums;
+
+    background: var(--fundo);
+    border-radius: 999px;
 }
 
-.marca.ativa {
-    background: var(--laranja);
-    color: var(--azul-escuro);
+.marca-qtd:empty {
+    display: none;
 }
 
-.marca.ativa .marca-sigla {
-    background: var(--azul-escuro);
-    color: #fff;
+/* A quantidade só aparece quando sobra espaço na faixa */
+
+.marca-qtd {
+    display: none;
+}
+
+@media (min-width: 1700px) {
+
+    .marca-qtd:not(:empty) {
+        display: inline-block;
+    }
 }
 
 .marca.ativa .marca-qtd {
     color: var(--azul-escuro);
-}
-
-.menu :focus-visible {
-    outline-color: #fff;
+    background: #ffe9d1;
 }
 
 
@@ -298,10 +435,63 @@ summary {
    CONTEÚDO
 ========================================================= */
 
+.container {
+    display: block;
+}
+
 main {
-    flex: 1;
     min-width: 0;
-    padding: 28px 32px 40px;
+    padding: 24px 28px 40px;
+}
+
+.trilha {
+    margin-bottom: 10px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--texto-suave);
+}
+
+.trilha a {
+    color: var(--azul);
+    text-decoration: none;
+}
+
+.trilha a:hover {
+    text-decoration: underline;
+}
+
+.trilha strong {
+    color: var(--texto);
+}
+
+.titulo-linha {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.logo-marca {
+    width: 104px;
+    height: 64px;
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    background: #fff;
+    border: 1px solid var(--linha);
+    border-radius: 12px;
+}
+
+.logo-marca img {
+    max-width: 78px;
+    max-height: 38px;
+    object-fit: contain;
 }
 
 .cabecalho-pagina h2 {
@@ -319,6 +509,10 @@ main {
     color: var(--texto-suave);
 }
 
+.so-impressao {
+    display: none;
+}
+
 
 /* =========================================================
    BARRA DE FERRAMENTAS
@@ -334,7 +528,7 @@ main {
 }
 
 .campo-pesquisa {
-    flex: 0 1 240px;
+    flex: 0 1 260px;
     min-width: 200px;
 
     display: flex;
@@ -381,48 +575,6 @@ main {
     font-variant-numeric: tabular-nums;
 }
 
-
-/* Seletor de peças exibidas */
-
-.acoes {
-    margin-left: auto;
-
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.colunas {
-    position: relative;
-}
-
-.botao {
-    height: 44px;
-    padding: 0 16px;
-
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--azul);
-
-    background: var(--superficie);
-    border: 1px solid var(--linha);
-    border-radius: var(--raio);
-
-    cursor: pointer;
-
-    transition: border-color 0.15s ease, background-color 0.15s ease;
-}
-
-.botao:hover {
-    border-color: var(--azul);
-    background: var(--azul-claro);
-}
-
 .preenchimento {
     display: inline-flex;
     align-items: center;
@@ -435,12 +587,12 @@ main {
 }
 
 .preenchimento-barra {
-    width: 64px;
+    width: 72px;
     height: 6px;
 
     overflow: hidden;
 
-    background: #dbe2ee;
+    background: #d6deeb;
     border-radius: 999px;
 }
 
@@ -455,12 +607,23 @@ main {
     transition: width 0.3s ease;
 }
 
+.acoes {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.botao,
 .colunas summary {
     height: 44px;
     padding: 0 16px;
 
     display: inline-flex;
     align-items: center;
+    gap: 8px;
 
     font-size: 14px;
     font-weight: 700;
@@ -471,8 +634,55 @@ main {
     border-radius: var(--raio);
 
     cursor: pointer;
-    list-style: none;
     user-select: none;
+
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.botao:hover {
+    border-color: var(--azul);
+    background: var(--azul-claro);
+}
+
+.botao[aria-pressed="true"],
+.botao.primario {
+    color: #fff;
+    background: var(--azul);
+    border-color: var(--azul);
+}
+
+.botao.primario:hover {
+    background: var(--azul-escuro);
+    border-color: var(--azul-escuro);
+}
+
+
+/* Botões só com ícone (o texto fica para leitores de tela) */
+
+.so-icone {
+    width: 44px;
+    padding: 0;
+    justify-content: center;
+}
+
+.rotulo {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+
+/* Peças exibidas */
+
+.colunas {
+    position: relative;
+}
+
+.colunas summary {
+    list-style: none;
 }
 
 .colunas summary::-webkit-details-marker {
@@ -483,7 +693,7 @@ main {
     content: "";
     width: 7px;
     height: 7px;
-    margin: -3px 0 0 10px;
+    margin: -3px 0 0 4px;
     border-right: 2px solid currentColor;
     border-bottom: 2px solid currentColor;
     transform: rotate(45deg);
@@ -551,12 +761,12 @@ main {
 
 
 /* =========================================================
-   TABELA
+   TABELA (estilo planilha)
 ========================================================= */
 
 .tabela-scroll {
-    max-height: calc(100vh - var(--altura-topo) - 190px);
-    min-height: 320px;
+    max-height: calc(100vh - var(--altura-topo) - var(--altura-menu) - 250px);
+    min-height: 360px;
 
     overflow: auto;
 
@@ -573,10 +783,13 @@ main {
 
 #tabelaModelos th,
 #tabelaModelos td {
-    padding: 8px 10px;
+    padding: 0;
+
     text-align: center;
     white-space: nowrap;
-    border-bottom: 1px solid var(--linha);
+
+    border-bottom: 1px solid var(--linha-suave);
+    border-right: 1px solid var(--linha-suave);
 }
 
 /* Cabeçalho fixo */
@@ -586,14 +799,15 @@ main {
     top: 0;
     z-index: 3;
 
-    padding: 13px 12px;
+    height: 46px;
+    padding: 0 14px;
 
-    font-size: 13px;
-    font-weight: 700;
+    font-size: 12.5px;
+    font-weight: 800;
+    color: var(--azul-escuro);
 
-    color: #fff;
-    background: var(--azul-escuro);
-    border-bottom: none;
+    background: var(--cabecalho-tabela);
+    border-bottom: 2px solid var(--azul-escuro);
 }
 
 /* Coluna do modelo fixa à esquerda */
@@ -604,8 +818,8 @@ main {
     left: 0;
     z-index: 2;
 
-    min-width: 190px;
-    padding-left: 18px;
+    min-width: 210px;
+    padding: 0 16px;
 
     text-align: left;
 }
@@ -614,25 +828,31 @@ main {
     font-size: 14px;
     font-weight: 700;
     color: var(--azul);
+
     background: var(--superficie);
     border-right: 1px solid var(--linha);
 }
 
 #tabelaModelos .modelo-titulo {
     z-index: 4;
-    border-right: 1px solid rgba(255, 255, 255, 0.18);
+    border-right: 1px solid var(--linha);
+}
+
+#tabelaModelos tbody tr:nth-child(even) td,
+#tabelaModelos tbody tr:nth-child(even) .modelo {
+    background-color: #fafbfd;
 }
 
 #tabelaModelos tbody tr:hover td,
 #tabelaModelos tbody tr:hover .modelo {
-    background: #f5f8ff;
+    background-color: #f1f6ff;
 }
 
 /* Linha em edição fica marcada */
 
 #tabelaModelos tbody tr:focus-within td,
 #tabelaModelos tbody tr:focus-within .modelo {
-    background: #eaf1fd;
+    background-color: #e8f0fc;
 }
 
 #tabelaModelos tbody tr:focus-within .modelo {
@@ -646,35 +866,36 @@ main {
 
 
 /* =========================================================
-   CAMPOS DE PREÇO
+   CÉLULAS DE PREÇO
 ========================================================= */
 
 .preco-campo {
-    width: 128px;
-    height: 38px;
-    margin: 0 auto;
-    padding: 0 10px;
+    width: 100%;
+    min-width: 126px;
+    height: 46px;
+    margin: 0;
+    padding: 0 14px;
 
     display: flex;
     align-items: center;
     gap: 6px;
 
-    background: var(--superficie);
-    border: 1px solid #d3dae6;
-    border-radius: 8px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
 
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    cursor: text;
 }
 
 .preco-campo span {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
-    color: #8a96a8;
+    color: #9aa6b8;
 }
 
 .preco-campo:focus-within {
-    border-color: var(--azul);
-    box-shadow: 0 0 0 3px rgba(0, 74, 173, 0.15);
+    background: #fff;
+    box-shadow: inset 0 0 0 2px var(--azul);
 }
 
 #tabelaModelos input.preco {
@@ -700,19 +921,41 @@ main {
 }
 
 #tabelaModelos input.preco::placeholder {
-    color: #b3bccb;
+    color: #c3cad7;
 }
 
-/* Campo preenchido fica em destaque */
-
 #tabelaModelos input.preco:not(:placeholder-shown) {
-    font-weight: 700;
+    font-weight: 800;
     color: var(--azul-escuro);
 }
 
 .preco-campo:has(input:not(:placeholder-shown)) {
-    background: var(--azul-claro);
-    border-color: #b7cdf2;
+    background: #eaf1fd;
+}
+
+.preco-campo:has(input:not(:placeholder-shown)):focus-within {
+    background: #fff;
+}
+
+/* Peça que o modelo não tem */
+
+#tabelaModelos td:has(.nao-se-aplica) {
+    background-image: repeating-linear-gradient(
+        135deg,
+        #f5f7fa 0 6px,
+        #eceff4 6px 12px
+    );
+}
+
+.nao-se-aplica {
+    display: block;
+    min-width: 126px;
+    line-height: 46px;
+
+    font-weight: 700;
+    color: #b3bccb;
+
+    cursor: default;
 }
 
 
@@ -781,71 +1024,254 @@ main {
 
 
 /* =========================================================
-   TABLET E CELULAR
+   VISÃO GERAL
 ========================================================= */
+
+.kpis {
+    margin-top: 24px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.kpi {
+    padding: 18px 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    background: var(--superficie);
+    border: 1px solid var(--linha);
+    border-radius: 12px;
+}
+
+.kpi span {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--texto-suave);
+}
+
+.kpi strong {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--azul-escuro);
+    font-variant-numeric: tabular-nums;
+}
+
+.secao-titulo {
+    margin: 32px 0 14px;
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--azul-escuro);
+}
+
+.cartoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+}
+
+.cartao {
+    padding: 16px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    text-align: left;
+    color: var(--texto);
+
+    background: var(--superficie);
+    border: 1px solid var(--linha);
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.cartao:hover {
+    border-color: var(--azul);
+    box-shadow: 0 8px 24px rgba(10, 42, 94, 0.12);
+    transform: translateY(-2px);
+}
+
+.cartao-topo {
+    height: 84px;
+
+    display: grid;
+    place-items: center;
+
+    background: #f7f9fc;
+    border-radius: 8px;
+}
+
+.cartao-logo img {
+    max-width: 130px;
+    max-height: 46px;
+    object-fit: contain;
+}
+
+.cartao-nome {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.cartao-nome strong {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--azul-escuro);
+}
+
+.cartao-nome small {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--texto-suave);
+}
+
+.cartao .preenchimento-barra {
+    width: 100%;
+}
+
+.cartao-rodape {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 13px;
+    color: var(--texto-suave);
+    font-variant-numeric: tabular-nums;
+}
+
+.cartao-rodape b {
+    color: var(--azul-escuro);
+}
+
+
+/* =========================================================
+   DIÁLOGO (preencher em massa)
+========================================================= */
+
+.dialogo {
+    width: min(440px, calc(100vw - 32px));
+    padding: 24px;
+
+    color: var(--texto);
+
+    background: #fff;
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0 24px 60px rgba(10, 42, 94, 0.3);
+}
+
+.dialogo::backdrop {
+    background: rgba(10, 42, 94, 0.45);
+}
+
+.dialogo h3 {
+    margin: 0 0 4px;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--azul-escuro);
+}
+
+.dialogo .dica {
+    margin: 0 0 18px;
+    font-size: 14px;
+    color: var(--texto-suave);
+}
+
+.dialogo label {
+    margin-bottom: 14px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.dialogo select,
+.dialogo input[type="text"] {
+    height: 44px;
+    padding: 0 12px;
+
+    font-size: 15px;
+    color: var(--texto);
+
+    background: #fff;
+    border: 1px solid #d3dae6;
+    border-radius: 8px;
+}
+
+.dialogo select:focus,
+.dialogo input[type="text"]:focus {
+    outline: none;
+    border-color: var(--azul);
+    box-shadow: 0 0 0 3px rgba(0, 74, 173, 0.15);
+}
+
+.dialogo label.check {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.dialogo-acoes {
+    margin-top: 20px;
+
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.rodape {
+    margin-top: 28px;
+    font-size: 12px;
+    color: var(--texto-suave);
+}
+
+
+/* =========================================================
+   TELAS MENORES
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .kpis {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
 @media (max-width: 900px) {
 
     :root {
-        --altura-topo: 60px;
+        --altura-topo: 58px;
+        --altura-menu: 56px;
     }
 
     .topbar {
-        padding: 0 16px;
+        padding: 0 14px;
+        gap: 12px;
     }
 
-    .logo {
-        width: 38px;
-        height: 38px;
-    }
-
-    .marca-principal p {
+    .busca-global kbd {
         display: none;
     }
-
-    .container {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    /* Menu vira uma faixa rolável na horizontal */
 
     .menu {
-        position: sticky;
-        top: var(--altura-topo);
-        z-index: 20;
-
-        width: 100%;
-        height: auto;
-
-        padding: 10px 12px;
-        overflow-x: auto;
-        overflow-y: hidden;
-    }
-
-    .menu-titulo {
-        display: none;
-    }
-
-    .menu-lista {
-        flex-direction: row;
-        gap: 8px;
+        padding: 0 8px;
     }
 
     .marca {
-        width: auto;
-        flex-shrink: 0;
-        padding: 8px 14px 8px 8px;
-    }
-
-    .marca-sigla {
-        width: 30px;
-        height: 30px;
-        font-size: 12px;
-    }
-
-    .marca-qtd {
-        display: none;
+        padding: 0 10px;
     }
 
     main {
@@ -854,6 +1280,16 @@ main {
 
     .cabecalho-pagina h2 {
         font-size: 24px;
+    }
+
+    .logo-marca {
+        width: 76px;
+        height: 48px;
+    }
+
+    .logo-marca img {
+        max-width: 56px;
+        max-height: 28px;
     }
 
     .tabela-scroll {
@@ -871,23 +1307,44 @@ main {
         height: 40px;
     }
 
+    .so-icone {
+        width: 40px;
+    }
+
     .campo-pesquisa {
         flex-basis: 100%;
     }
 }
 
+@media (max-width: 700px) {
+
+    .marca-principal > div {
+        display: none;
+    }
+
+    .status-sync {
+        padding: 8px;
+    }
+
+    .status-sync .status-texto {
+        display: none;
+    }
+}
+
 @media (max-width: 520px) {
 
-    .status-texto {
-        max-width: 150px;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    .kpis {
+        gap: 10px;
+    }
+
+    .kpi strong {
+        font-size: 22px;
     }
 
     #tabelaModelos .modelo,
     #tabelaModelos .modelo-titulo {
         min-width: 150px;
-        padding-left: 12px;
+        padding: 0 12px;
     }
 }
 
@@ -904,24 +1361,9 @@ main {
 }
 
 
-/* Peça que o modelo não tem (ex.: indução) */
-
-.nao-se-aplica {
-    display: inline-block;
-    width: 128px;
-    color: #b3bccb;
-    font-weight: 700;
-    cursor: default;
-}
-
-
 /* =========================================================
    IMPRESSÃO
 ========================================================= */
-
-.so-impressao {
-    display: none;
-}
 
 @page {
     size: A4 landscape;
@@ -938,6 +1380,8 @@ main {
     .topbar,
     .menu,
     .ferramentas,
+    .trilha,
+    .rodape,
     .pular-conteudo,
     #descricaoPagina {
         display: none !important;
@@ -947,11 +1391,6 @@ main {
         display: block !important;
         margin: 4px 0 12px;
         color: #444;
-    }
-
-    .container {
-        display: block;
-        min-height: 0;
     }
 
     main {
@@ -982,6 +1421,7 @@ main {
     }
 
     #tabelaModelos thead th {
+        height: auto;
         color: #000;
         background: #fff;
         border-bottom: 2px solid #000;
@@ -1010,12 +1450,16 @@ main {
         display: none;
     }
 
+    #tabelaModelos td:has(.nao-se-aplica) {
+        background-image: none;
+    }
+
     .preco-campo {
         width: auto;
+        min-width: 0;
         height: auto;
         padding: 0;
         justify-content: center;
-        border: none;
         background: none !important;
     }
 
@@ -1030,7 +1474,8 @@ main {
     }
 
     .nao-se-aplica {
-        width: auto;
+        min-width: 0;
+        line-height: normal;
         color: #999;
     }
 }

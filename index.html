@@ -5,8 +5,11 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a2a5e">
 
     <title>ArenaCell | Catálogo de Peças</title>
+
+    <link rel="icon" id="favicon" href="data:,">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,10 +34,8 @@
 
     <header class="topbar">
 
-        <div class="marca-principal">
-            <img
-                src="AC.png"
-                alt="Logo ArenaCell"
+        <a class="marca-principal" href="#inicio" aria-label="ArenaCell, ir para a visão geral">
+             <img data-logo="arenacell" alt=""
                 class="logo"
                 onerror="this.style.display='none'"
             >
@@ -42,6 +43,22 @@
                 <h1>ArenaCell</h1>
                 <p>Catálogo de peças e valores</p>
             </div>
+        </a>
+
+        <div class="busca-global">
+            <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <circle cx="8.5" cy="8.5" r="5.5"></circle>
+                <path d="M13 13l4 4"></path>
+            </svg>
+            <input
+                type="search"
+                id="buscaGlobal"
+                placeholder="Buscar modelo em todas as marcas"
+                aria-label="Buscar modelo em todas as marcas"
+                autocomplete="off"
+            >
+            <kbd>Ctrl K</kbd>
+            <ul class="resultados" id="resultadosGlobais" hidden></ul>
         </div>
 
         <div class="status-sync" id="statusSync" data-estado="conectando" role="status" aria-live="polite">
@@ -59,57 +76,70 @@
              MENU LATERAL
         ======================================= -->
 
-        <aside class="menu">
+        <nav class="menu" aria-label="Marcas de celular">
 
-            <h2 class="menu-titulo">Marcas</h2>
+            <div class="menu-lista">
 
-            <nav class="menu-lista" aria-label="Marcas de celular">
+                <button class="marca" data-marca="inicio" type="button">
+                    <span class="marca-icone" aria-hidden="true">
+                        <svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+                            <rect x="3" y="3" width="6" height="6" rx="1"></rect>
+                            <rect x="11" y="3" width="6" height="6" rx="1"></rect>
+                            <rect x="3" y="11" width="6" height="6" rx="1"></rect>
+                            <rect x="11" y="11" width="6" height="6" rx="1"></rect>
+                        </svg>
+                    </span>
+                    <span class="marca-nome">Visão geral</span>
+                    <span class="marca-qtd"></span>
+                </button>
+
+                <span class="menu-divisor" aria-hidden="true"></span>
 
                 <button class="marca" data-marca="iphone" type="button">
-                    <span class="marca-sigla" aria-hidden="true">iP</span>
+                    <span class="marca-logo"><img data-logo="iphone" alt=""></span>
                     <span class="marca-nome">iPhone</span>
                     <span class="marca-qtd"></span>
                 </button>
 
                 <button class="marca" data-marca="samsung" type="button">
-                    <span class="marca-sigla" aria-hidden="true">Sa</span>
+                    <span class="marca-logo"><img data-logo="samsung" alt=""></span>
                     <span class="marca-nome">Samsung</span>
                     <span class="marca-qtd"></span>
                 </button>
 
                 <button class="marca" data-marca="motorola" type="button">
-                    <span class="marca-sigla" aria-hidden="true">Mo</span>
+                    <span class="marca-logo"><img data-logo="motorola" alt=""></span>
                     <span class="marca-nome">Motorola</span>
                     <span class="marca-qtd"></span>
                 </button>
 
                 <button class="marca" data-marca="xiaomi" type="button">
-                    <span class="marca-sigla" aria-hidden="true">Xi</span>
+                    <span class="marca-logo"><img data-logo="xiaomi" alt=""></span>
                     <span class="marca-nome">Xiaomi</span>
                     <span class="marca-qtd"></span>
                 </button>
 
                 <button class="marca" data-marca="realme" type="button">
-                    <span class="marca-sigla" aria-hidden="true">Re</span>
+                    <span class="marca-logo"><img data-logo="realme" alt=""></span>
                     <span class="marca-nome">Realme</span>
                     <span class="marca-qtd"></span>
                 </button>
 
                 <button class="marca" data-marca="infinix" type="button">
-                    <span class="marca-sigla" aria-hidden="true">In</span>
+                    <span class="marca-logo"><img data-logo="infinix" alt=""></span>
                     <span class="marca-nome">Infinix</span>
                     <span class="marca-qtd"></span>
                 </button>
 
                 <button class="marca" data-marca="oppo" type="button">
-                    <span class="marca-sigla" aria-hidden="true">Op</span>
+                    <span class="marca-logo"><img data-logo="oppo" alt=""></span>
                     <span class="marca-nome">OPPO</span>
                     <span class="marca-qtd"></span>
                 </button>
 
-            </nav>
+            </div>
 
-        </aside>
+        </nav>
 
 
         <!-- ======================================
@@ -119,9 +149,23 @@
         <main>
 
             <section class="cabecalho-pagina">
-                <h2 id="tituloMarca">Catálogo de peças</h2>
-                <p id="descricaoPagina">Escolha uma marca para consultar os modelos e cadastrar os valores.</p>
-                <p class="so-impressao" id="dataImpressao"></p>
+
+                <nav class="trilha" id="trilha" aria-label="Você está em"></nav>
+
+                <div class="titulo-linha">
+
+                    <span class="logo-marca" id="logoMarca" hidden>
+                        <img id="logoMarcaImg" alt="">
+                    </span>
+
+                    <div>
+                        <h2 id="tituloMarca">Visão geral</h2>
+                        <p id="descricaoPagina">Escolha uma marca para consultar os modelos e cadastrar os valores.</p>
+                        <p class="so-impressao" id="dataImpressao"></p>
+                    </div>
+
+                </div>
+
             </section>
 
 
@@ -136,8 +180,8 @@
                     <input
                         type="search"
                         id="pesquisa"
-                        placeholder="Pesquisar modelo"
-                        aria-label="Pesquisar modelo"
+                        placeholder="Filtrar modelos"
+                        aria-label="Filtrar modelos desta marca"
                         autocomplete="off"
                     >
                 </label>
@@ -156,18 +200,26 @@
                         <div class="colunas-painel" id="seletorPecas"></div>
                     </details>
 
-                    <button type="button" class="botao" id="botaoExportar" title="Baixar esta marca como planilha (Excel)">
+                    <button type="button" class="botao" id="botaoPendentes" aria-pressed="false" title="Mostrar só os modelos que ainda têm peça sem preço">
+                        Só pendentes
+                    </button>
+
+                    <button type="button" class="botao" id="botaoMassa" title="Aplicar o mesmo valor a uma peça em vários modelos">
+                        Preencher em massa
+                    </button>
+
+                    <button type="button" class="botao so-icone" aria-label="Exportar" id="botaoExportar" title="Baixar esta marca como planilha (Excel)">
                         <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M10 3v10M6 9l4 4 4-4M4 16h12"></path>
                         </svg>
-                        Exportar
+                        <span class="rotulo">Exportar</span>
                     </button>
 
-                    <button type="button" class="botao" id="botaoImprimir" title="Imprimir só as linhas com preço">
+                    <button type="button" class="botao so-icone" aria-label="Imprimir" id="botaoImprimir" title="Imprimir só as linhas com preço">
                         <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M6 7V3h8v4M6 14H4V8h12v6h-2M6 12h8v5H6z"></path>
                         </svg>
-                        Imprimir
+                        <span class="rotulo">Imprimir</span>
                     </button>
 
                 </div>
@@ -177,14 +229,51 @@
 
             <div id="conteudo">
                 <div class="estado-vazio">
-                    <h3>Nenhuma marca selecionada</h3>
-                    <p>Escolha um fabricante no menu para ver os modelos e preencher o valor de cada peça.</p>
+                    <h3>Carregando catálogo</h3>
+                    <p>Um instante enquanto os dados são preparados.</p>
                 </div>
             </div>
+
+
+            <footer class="rodape">ArenaCell · Catálogo de peças e valores</footer>
 
         </main>
 
     </div>
+
+
+    <!-- ==========================================
+         PREENCHIMENTO EM MASSA
+    =========================================== -->
+
+    <dialog id="dialogoMassa" class="dialogo" aria-labelledby="tituloMassa">
+        <form method="dialog" id="formMassa">
+
+            <h3 id="tituloMassa">Preencher em massa</h3>
+            <p class="dica" id="massaResumo"></p>
+
+            <label>
+                Peça
+                <select id="massaPeca"></select>
+            </label>
+
+            <label>
+                Valor (R$)
+                <input type="text" id="massaValor" inputmode="decimal" placeholder="0,00" autocomplete="off" required>
+            </label>
+
+            <label class="check">
+                <input type="checkbox" id="massaSubstituir">
+                Substituir preços já preenchidos
+            </label>
+
+            <div class="dialogo-acoes">
+                <button value="cancelar" class="botao" formnovalidate>Cancelar</button>
+                <button value="ok" class="botao primario">Aplicar</button>
+            </div>
+
+        </form>
+    </dialog>
 
 
     <script src="script.js"></script>
