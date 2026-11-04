@@ -33,6 +33,8 @@ let firebaseRef = null;
 let firebaseSet = null;
 let firebaseGet = null;
 let firebaseUpdate = null;
+let firebaseOnValue = null;
+let cancelarSincronizacaoMarca = null;
 
 
 // ============================================================
@@ -87,6 +89,9 @@ async function iniciarFirebase() {
 
         firebaseUpdate =
             firebaseDatabase.update;
+
+        firebaseOnValue =
+            firebaseDatabase.onValue;
 
 
         console.log(
@@ -758,6 +763,54 @@ async function buscarPrecosFirebase(marca) {
 }
 
 
+// Mantém a tabela aberta atualizada quando outro aparelho altera preços.
+function sincronizarPrecosEmTempoReal(marca) {
+
+    if (!FIREBASE_ATIVO || !db || !firebaseRef || !firebaseOnValue) {
+        return;
+    }
+
+    // Encerra a escuta da marca anterior para evitar listeners duplicados.
+    if (typeof cancelarSincronizacaoMarca === "function") {
+        cancelarSincronizacaoMarca();
+    }
+
+    const referencia = firebaseRef(db, `precos/${chaveFirebase(marca)}`);
+
+    cancelarSincronizacaoMarca = firebaseOnValue(referencia, snapshot => {
+
+        if (marcaAtual !== marca) return;
+
+        const dados = snapshot.exists() ? snapshot.val() : {};
+
+        document.querySelectorAll("#tabelaModelos input.preco").forEach(input => {
+
+            const modelo = chaveFirebase(input.dataset.modelo);
+            const peca = chaveFirebase(input.dataset.peca);
+            const valorNuvem = dados[modelo]?.[peca];
+
+            // Não interrompe uma edição que está sendo feita neste aparelho.
+            const chave = chaveTemporizador(input);
+            const estaEditando = document.activeElement === input || temporizadoresSalvar.has(chave);
+
+            if (estaEditando) return;
+
+            const valor = valorNuvem === undefined || valorNuvem === null
+                ? ""
+                : String(valorNuvem);
+
+            input.value = formatarPreco(valor) ?? valor;
+            salvarPrecoLocal(marca, input.dataset.modelo, input.dataset.peca, valor);
+        });
+
+        atualizarPreenchimento();
+    }, erro => {
+        console.error("Erro na sincronização em tempo real:", erro);
+        mostrarStatus("erro", "Falha na sincronização");
+    });
+}
+
+
 // ============================================================
 // STATUS DE SALVAMENTO (canto superior direito)
 // ============================================================
@@ -1331,6 +1384,9 @@ async function abrirMarca(marca) {
 
     montarSeletorPecas(pecas);
     aplicarColunas();
+
+    // Escuta alterações feitas em outros computadores e celulares.
+    sincronizarPrecosEmTempoReal(marca);
 
     const pesquisa = document.getElementById("pesquisa");
 
